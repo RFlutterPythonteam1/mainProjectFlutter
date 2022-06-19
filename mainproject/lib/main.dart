@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mainproject/directors.dart';
 import 'package:mainproject/inputData.dart';
+import 'package:mainproject/jo_actor.dart';
+import 'package:mainproject/ju_actor.dart';
 import 'package:mainproject/login.dart';
 import 'package:mainproject/singup.dart';
 import 'package:mainproject/test.dart';
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
         '/T': (context) => const TestScreen(),
         '/Input': (context) => const First(),
         '/director': (context) => const Director(),
+        '/actor2': (context) => const Actor2(),
+        '/actor': (context) => const Actor(),
       },
       initialRoute: '/Login',
     );

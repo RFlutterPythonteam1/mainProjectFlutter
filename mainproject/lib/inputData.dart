@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mainproject/data.dart';
+import 'package:http/http.dart' as http;
 
 class First extends StatefulWidget {
   const First({Key? key}) : super(key: key);
@@ -38,6 +41,10 @@ class _FirstState extends State<First> {
 
   final List<String> _gList = Genre.genre;
   late String _gValue = _gList[0].toString();
+
+  late String current_name;
+  late int current_score;
+  late String current_movie_path;
 
   @override
   void initState() {
@@ -449,8 +456,8 @@ class _FirstState extends State<First> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/actor")
-                        .then((value) => getDataM(value));
+                    Navigator.pushNamed(context, "/actor2")
+                        .then((value) => getDataS(value));
                   },
                   child: const Text('조연선택'),
                 ),
@@ -464,12 +471,316 @@ class _FirstState extends State<First> {
                 ),
                 IconButton(
                     onPressed: () {
-                      //
+                      setState(() {
+                        S2Visible = true;
+                      });
                     },
                     icon: const Icon(
                       Icons.add,
                     )),
               ],
+            ),
+            Visibility(
+              // 조연2
+              visible: S2Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS2(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s2controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S3Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연3
+              visible: S3Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS3(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s3controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S4Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연4
+              visible: S4Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS4(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s4controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S5Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연5
+              visible: S5Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS5(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s5controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S6Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연6
+              visible: S6Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS6(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s6controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S7Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연7
+              visible: S7Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS7(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s7controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S8Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연8
+              visible: S8Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS8(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s8controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S9Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연 9
+              visible: S9Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS9(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s9controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          S10Visible = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
+            ),
+            Visibility(
+              // 조연10
+              visible: S10Visible,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Message.actor = mcontroller.text;
+                      Navigator.pushNamed(context, "/actor2")
+                          .then((value) => getDataS10(value));
+                    },
+                    child: const Text('조연선택'),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: TextField(
+                      enabled: false,
+                      controller: s10controller,
+                      decoration: const InputDecoration(labelText: "버튼을 눌러 선택"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add,
+                      )),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -552,126 +863,168 @@ class _FirstState extends State<First> {
   getDataD(value) {
     setState(() {
       dcontroller.text = Message.msg;
+      getJuActorInfo();
+      getJoActorInfo();
     });
   }
 
   getDataM(value) {
     setState(() {
       mcontroller.text = Message.actor;
+      JuActors.score.add(Message.actor_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM2(value) {
     setState(() {
       m2controller.text = Message.actor2;
+      JuActors.score.add(Message.actor2_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM3(value) {
     setState(() {
       m3controller.text = Message.actor3;
+      JuActors.score.add(Message.actor3_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM4(value) {
     setState(() {
       m4controller.text = Message.actor4;
+      JuActors.score.add(Message.actor4_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM5(value) {
     setState(() {
       m5controller.text = Message.actor5;
+      JuActors.score.add(Message.actor5_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM6(value) {
     setState(() {
       m6controller.text = Message.actor6;
+      JuActors.score.add(Message.actor6_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM7(value) {
     setState(() {
       m7controller.text = Message.actor7;
+      JuActors.score.add(Message.actor7_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM8(value) {
     setState(() {
       m8controller.text = Message.actor8;
+      JuActors.score.add(Message.actor8_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM9(value) {
     setState(() {
       m9controller.text = Message.actor9;
+      JuActors.score.add(Message.actor9_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataM10(value) {
     setState(() {
       m10controller.text = Message.actor10;
+      JuActors.score.add(Message.actor10_score);
+      JuActors.juActors.remove(JuActors.juActors[JuActors.selectIdx]);
     });
   }
 
   getDataS(value) {
     setState(() {
-      mcontroller.text = Message.subactor;
+      scontroller.text = Message.subactor;
+      JoActors.score.add(Message.subactor_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS2(value) {
     setState(() {
-      m2controller.text = Message.subactor2;
+      s2controller.text = Message.subactor2;
+      JoActors.score.add(Message.subactor2_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS3(value) {
     setState(() {
-      m3controller.text = Message.subactor3;
+      s3controller.text = Message.subactor3;
+      JoActors.score.add(Message.subactor3_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS4(value) {
     setState(() {
-      m4controller.text = Message.subactor4;
+      s4controller.text = Message.subactor4;
+      JoActors.score.add(Message.subactor4_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS5(value) {
     setState(() {
-      m5controller.text = Message.subactor5;
+      s5controller.text = Message.subactor5;
+      JoActors.score.add(Message.subactor5_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS6(value) {
     setState(() {
-      m6controller.text = Message.subactor6;
+      s6controller.text = Message.subactor6;
+      JoActors.score.add(Message.subactor6_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS7(value) {
     setState(() {
-      m7controller.text = Message.subactor7;
+      s7controller.text = Message.subactor7;
+      JoActors.score.add(Message.subactor7_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS8(value) {
     setState(() {
-      m8controller.text = Message.subactor8;
+      s8controller.text = Message.subactor8;
+      JoActors.score.add(Message.subactor8_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS9(value) {
     setState(() {
-      m9controller.text = Message.subactor9;
+      s9controller.text = Message.subactor9;
+      JoActors.score.add(Message.subactor9_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
   getDataS10(value) {
     setState(() {
-      m10controller.text = Message.subactor10;
+      s10controller.text = Message.subactor10;
+      JoActors.score.add(Message.subactor10_score);
+      JoActors.joActors.remove(JoActors.joActors[JoActors.selectIdx]);
     });
   }
 
@@ -704,4 +1057,126 @@ class _FirstState extends State<First> {
           );
         });
   }
-}
+
+  getJuActorInfo() async {
+    var url = Uri.parse(
+        'http://192.168.1.8:8080/Flutter/movie_ju_actors.jsp?director_id=${Message.director_id}');
+    var response = await http.get(url);
+    print('debug :$url');
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+
+      // 데이터 초기화
+      JuActors.juActors.clear();
+      current_name = result[0]['ju_actor_name'].toString(); // 첫번째 배우이름
+      current_score = int.parse(result[0]['ju_actor_score']); // 첫번째 배우점수
+      current_movie_path = result[0]['movie_img'].toString(); // 첫번째 배우 출연영화
+
+      for (int i = 1; i < result.length; i++) {
+        if (current_name.compareTo(result[i]['ju_actor_name'].toString()) !=
+            0) {
+          // current_name과 배우명이 같지않으면 current_name 저장
+          JuActors.juActors.add(JuActorInfo(
+              ju_actor_name: current_name,
+              juActor_score: current_score,
+              ju_movie_imgPath1: current_movie_path,
+              ju_movie_imaPath2: result[i - 1]['movie_img'].toString()));
+          current_name = result[i]['ju_actor_name'].toString();
+          current_score = int.parse(result[i]['ju_actor_score']);
+          current_movie_path = result[i]['movie_img'].toString();
+        }
+
+        if (i == result.length - 1) {
+          if (current_name.compareTo(result[i]['ju_actor_name'].toString()) !=
+              0) {
+            // current_name과 배우명이 같지않으면 current_name 저장
+            JuActors.juActors.add(JuActorInfo(
+                ju_actor_name: current_name,
+                juActor_score: current_score,
+                ju_movie_imgPath1: current_movie_path,
+                ju_movie_imaPath2: result[i - 1]['movie_img'].toString()));
+
+            JuActors.juActors.add(JuActorInfo(
+                ju_actor_name: result[i]['ju_actor_name'].toString(),
+                juActor_score: int.parse(result[i]['ju_actor_score']),
+                ju_movie_imgPath1: result[i]['movie_img'].toString(),
+                ju_movie_imaPath2: result[i]['movie_img'].toString()));
+          } else {
+            JuActors.juActors.add(JuActorInfo(
+                ju_actor_name: current_name,
+                juActor_score: current_score,
+                ju_movie_imgPath1: current_movie_path,
+                ju_movie_imaPath2: result[i]['movie_img'].toString()));
+          }
+        }
+      }
+
+      // for (int i = 0; i < JuActors.juActors.length; i++) {
+      //   print(
+      //       'debug : ${JuActors.juActors[i].ju_actor_name}, ${JuActors.juActors[i].juActor_score}, ${JuActors.juActors[i].ju_movie_imgPath1}, ${JuActors.juActors[i].ju_movie_imaPath2}');
+      // }
+    });
+  }
+
+  getJoActorInfo() async {
+    var url = Uri.parse(
+        'http://192.168.1.8:8080/Flutter/movie_jo_actors.jsp?director_id=${Message.director_id}');
+    var response = await http.get(url);
+    print('debug :$url');
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+
+      // 데이터 초기화
+      JoActors.joActors.clear();
+      current_name = result[0]['jo_actor_name'].toString(); // 첫번째 배우이름
+      current_score = int.parse(result[0]['jo_actor_score']); // 첫번째 배우점수
+      current_movie_path = result[0]['movie_img'].toString(); // 첫번째 배우 출연영화
+
+      for (int i = 1; i < result.length; i++) {
+        if (current_name.compareTo(result[i]['jo_actor_name'].toString()) !=
+            0) {
+          // current_name과 배우명이 같지않으면 current_name 저장
+          JoActors.joActors.add(JoActorInfo(
+              jo_actor_name: current_name,
+              joActor_score: current_score,
+              jo_movie_imgPath1: current_movie_path,
+              jo_movie_imaPath2: result[i - 1]['movie_img'].toString()));
+          current_name = result[i]['jo_actor_name'].toString();
+          current_score = int.parse(result[i]['jo_actor_score']);
+          current_movie_path = result[i]['movie_img'].toString();
+        }
+
+        if (i == result.length - 1) {
+          if (current_name.compareTo(result[i]['jo_actor_name'].toString()) !=
+              0) {
+            // current_name과 배우명이 같지않으면 current_name 저장
+            JoActors.joActors.add(JoActorInfo(
+                jo_actor_name: current_name,
+                joActor_score: current_score,
+                jo_movie_imgPath1: current_movie_path,
+                jo_movie_imaPath2: result[i - 1]['movie_img'].toString()));
+
+            JoActors.joActors.add(JoActorInfo(
+                jo_actor_name: result[i]['jo_actor_name'].toString(),
+                joActor_score: int.parse(result[i]['jo_actor_score']),
+                jo_movie_imgPath1: result[i]['movie_img'].toString(),
+                jo_movie_imaPath2: result[i]['movie_img'].toString()));
+          } else {
+            JoActors.joActors.add(JoActorInfo(
+                jo_actor_name: current_name,
+                joActor_score: current_score,
+                jo_movie_imgPath1: current_movie_path,
+                jo_movie_imaPath2: result[i]['movie_img'].toString()));
+          }
+        }
+      }
+
+      // for (int i = 0; i < JoActors.joActors.length; i++) {
+      //   print(
+      //       'debug: ${JoActors.joActors[i].jo_actor_name}  ${JoActors.joActors[i].joActor_score} ${JoActors.joActors[i].jo_movie_imgPath1} ${JoActors.joActors[i].jo_movie_imaPath2}');
+      // }
+    });
+  }
+} // End
