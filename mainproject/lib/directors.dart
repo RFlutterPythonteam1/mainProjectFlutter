@@ -14,6 +14,9 @@ class _DirectorState extends State<Director> {
   late List imgindex;
   late List temp;
 
+    final TextEditingController tec1 = TextEditingController();
+  late List searchindex;
+
   @override
   void initState() {
     super.initState();
@@ -35,10 +38,8 @@ class _DirectorState extends State<Director> {
         imgindex.add(temp);
         temp = [];
         dirname.add(Directors.directors[Directors.directors.length - 1].director_name);
-
       }
     }
-
   }
 
   @override
@@ -47,64 +48,149 @@ class _DirectorState extends State<Director> {
       appBar: AppBar(
         title: const Text('감독'),
       ),
-      body: Center(
-          //loading 화면때문에
-          child: Directors.directors.isEmpty
-              ? const Text('데이터가 없습니다.')
-              : ListView.builder(
-                  itemCount: dirname.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Message.msg = Directors.directors[imgindex[index][0]].director_name;
-                          Message.director_score =
-                              Directors.directors[imgindex[index][0]].director_score;
-                          Message.director_id =
-                              Directors.directors[imgindex[index][0]].director_id;
+      body: SingleChildScrollView(
+        reverse: true,
+        child: Column(
+          children: [
+            SizedBox(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      searchindex = [];
+                      searchdir();
+                    });
+                  },
+                  controller: tec1,
+                ),
+              )
+              ,
       
-                          Navigator.pop(context);
-                        },
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          
-                          child: SizedBox(
-                            width: 800,
-                            child: Card(
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: SizedBox(
-                                            width: 50,
-                                            child: Text(
-                                              dirname[index]
+            SizedBox(
+              width: 300,
+              height: 500,
+              child: Directors.directors.isEmpty
+                  ? const Text('데이터가 없습니다.')
+                  : tec1.text.isNotEmpty?
+                  ListView.builder(
+                      itemCount: searchindex.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Message.msg = Directors.directors[imgindex[searchindex[index]][0]].director_name;
+                              Message.director_score =
+                                  Directors.directors[imgindex[searchindex[index]][0]].director_score;
+                              Message.director_id =
+                                  Directors.directors[imgindex[searchindex[index]][0]].director_id;
+              
+                              Navigator.pop(context);
+                            },
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              
+                              child: SizedBox(
+                                width: 800,
+                                child: Card(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(30.0),
+                                              child: SizedBox(
+                                                width: 50,
+                                                child: Text(
+                                                  dirname[index]
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            poster(index),
+                                          ],
                                         ),
-                                        poster(index),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ) 
+                    :
+                  ListView.builder(
+                      itemCount: dirname.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Message.msg = Directors.directors[imgindex[index][0]].director_name;
+                              Message.director_score =
+                                  Directors.directors[imgindex[index][0]].director_score;
+                              Message.director_id =
+                                  Directors.directors[imgindex[index][0]].director_id;
+              
+                              Navigator.pop(context);
+                            },
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              
+                              child: SizedBox(
+                                width: 800,
+                                child: Card(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(30.0),
+                                              child: SizedBox(
+                                                width: 50,
+                                                child: Text(
+                                                  dirname[index]
+                                                ),
+                                              ),
+                                            ),
+                                            poster(index),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+            ),
+          ],
         ),
+      ),
     );
   }
 
   //functions
+
+  searchdir(){
+    setState(() {
+      
+    for (int i = 0 ; i < Directors.directors.length ; i++){
+      if(Directors.directors[i].director_name.length >= tec1.text.length){
+        if(Directors.directors[i].director_name.substring(0, tec1.text.length) == tec1.text ){
+          searchindex.add(i);
+        }
+      }
+    }
+    });
+  }
 
   Widget poster(int index){
     List<Widget> resultList=[];

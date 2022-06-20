@@ -863,7 +863,17 @@ class _FirstState extends State<First> {
               padding: const EdgeInsets.all(30.0),
               child: ElevatedButton(
                 onPressed: () {
-                  _showDialog(context);
+                      if(dcontroller.text.isEmpty){
+                        alertDialog(context, "감독을 선택해주세요.");
+                      }else if(mcontroller.text.isEmpty){
+                        alertDialog(context, "주연 배우를 선택해주세요.");
+                      }else if(scontroller.text.isEmpty){
+                        alertDialog(context, "조연 배우를 선택해주세요.");
+                      }else if(scrcontroller.text.isEmpty){
+                        alertDialog(context, "스크린 수를 입력해주세요");
+                      }else{
+                         _showDialog(context);
+                      }
                 },
                 child: const Text('선택완료'),
               ),
@@ -1067,6 +1077,7 @@ class _FirstState extends State<First> {
               Center(
                 child: TextButton(
                     onPressed: () {
+                      
                       findscore();
                       predict();
 
@@ -1077,6 +1088,27 @@ class _FirstState extends State<First> {
             ],
           );
         });
+  }
+
+  alertDialog(BuildContext context,String str) {
+    showDialog(
+      context: context,
+      builder: (BuildContext ctx) {
+        return AlertDialog(
+          title: Text('경고'),
+          content: 
+              Text(str),
+
+          actions: [
+            TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('확인')
+            ),
+          ],
+        );
+      });
   }
 
   getJuActorInfo() async {
@@ -1203,70 +1235,72 @@ class _FirstState extends State<First> {
 
   // functions
 
-    predict() async{
+  predict() async{
 
-    int dis = 2;
-    int genre = 10;
+    int dis = 0;
+    int genre = 0;
     double diract = 0;
-    double ju = 4;
-    double dir = 2;
-    double screen = 339;
-    double jo = 2.6;
+    double ju = 0;
+    double dir = 0;
+    double screen = 0;
+    double jo = 0;
 
     // dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6 
-    
-    dir = Message.director_score;
-    screen = scrcontroller.text.isNotEmpty ?  double.parse(scrcontroller.text) : screen;
-    
-    for(int i =0 ; i<Genre.genre.length ; i++){
-      if(Genre.genre[i] == _gValue){
-        genre = Genre.genre_score[i];
-      }
-    }
-    for(int i =0 ; i<Distributor.distributor_name.length ; i++){
-      if(Distributor.distributor_name[i] == _selectedValue){
-        dis = Distributor.distributor_score[i];
-      }
-    }
 
-    if(ju_score.isNotEmpty){
-      print(ju_score[ju_score.length-1]);
-      ju = ju_score[ju_score.length-1];
-    }
-    if(jo_score.length >= 3){
-      jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) + double.parse(jo_score[jo_score.length-3]))/3;
-    }else if(jo_score.length >= 2){
-      jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) )/2;
-    }else if(jo_score.length >= 1){
-      jo = jo_score[jo_score.length-1];
-    }
 
-    for(int i = 0 ; i >Diracts.diracts.length ; i++){
-      for(int j = 0; j < ju_name.length ; j++){
-        if((ju_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
-          diract = diract + 1;
+      dir = Message.director_score;
+      screen = scrcontroller.text.isNotEmpty ?  double.parse(scrcontroller.text) : screen;
+      
+      for(int i =0 ; i<Genre.genre.length ; i++){
+        if(Genre.genre[i] == _gValue){
+          genre = Genre.genre_score[i];
         }
       }
-      for(int j = 0; j < jo_name.length ; j++){
-        if((jo_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
-          diract = diract + 0.83;
+      for(int i =0 ; i<Distributor.distributor_name.length ; i++){
+        if(Distributor.distributor_name[i] == _selectedValue){
+          dis = Distributor.distributor_score[i];
         }
       }
-    }
 
-    var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis="+ dis.toString() +"&genre="+ genre.toString()+ "&diract="+ diract.toString()+ "&ju=" + ju.toString()+"&dir="+dir.toString()+"&screen="+screen.toString()+"&jo="+jo.toString());
-    
-    var response = await http.get(url);
+      if(ju_score.isNotEmpty){
+        print(ju_score[ju_score.length-1]);
+        ju = ju_score[ju_score.length-1];
+      }
+      if(jo_score.length >= 3){
+        jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) + double.parse(jo_score[jo_score.length-3]))/3;
+      }else if(jo_score.length >= 2){
+        jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) )/2;
+      }else if(jo_score.length >= 1){
+        jo = jo_score[jo_score.length-1];
+      }
 
-    var jsondata = json.decode(utf8.decode(response.bodyBytes));
+      for(int i = 0 ; i >Diracts.diracts.length ; i++){
+        for(int j = 0; j < ju_name.length ; j++){
+          if((ju_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
+            diract = diract + 1;
+          }
+        }
+        for(int j = 0; j < jo_name.length ; j++){
+          if((jo_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
+            diract = diract + 0.83;
+          }
+        }
+      }
 
-    
-    setState(() {
-      pred_result = jsondata["result"];
-      print(pred_result);
-    });
+      var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis="+ dis.toString() +"&genre="+ genre.toString()+ "&diract="+ diract.toString()+ "&ju=" + ju.toString()+"&dir="+dir.toString()+"&screen="+screen.toString()+"&jo="+jo.toString());
+      
+      var response = await http.get(url);
 
-  }
+      var jsondata = json.decode(utf8.decode(response.bodyBytes));
+
+      
+      setState(() {
+        pred_result = jsondata["result"];
+        print(pred_result);
+      });
+
+    //
+  }//predict
 
   findscore(){
     if(mcontroller.text.isNotEmpty){
@@ -1355,4 +1389,6 @@ class _FirstState extends State<First> {
     jo_score.sort();
     
   }
+
+  
 } // End
