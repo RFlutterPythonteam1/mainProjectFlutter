@@ -49,6 +49,7 @@ class _FirstState extends State<First> {
   late String pred_result;
   late String str;
   late String img_Path;
+  late String str0;
 
   late List jo_score;
   late List ju_score;
@@ -67,6 +68,7 @@ class _FirstState extends State<First> {
     pred_result = '0';
     str = '';
     img_Path = '';
+    str0='';
 
     dcontroller = TextEditingController();
     mcontroller = TextEditingController();
@@ -1065,16 +1067,16 @@ class _FirstState extends State<First> {
           return AlertDialog(
             title: Text('선택된 정보'),
             content: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text('감독: ${dcontroller.text}'),
+                Text('감독: ${dcontroller.text} '),
                 Text(
                     '주연: ${mcontroller.text} ${m2controller.text} ${m3controller.text} ${m4controller.text} ${m5controller.text} ${m6controller.text} ${m7controller.text} ${m8controller.text} ${m9controller.text} ${m10controller.text}'),
                 Text(
                     '조연: ${scontroller.text} ${s2controller.text} ${s3controller.text} ${s4controller.text} ${s5controller.text} ${s6controller.text} ${s7controller.text} ${s8controller.text} ${s9controller.text} ${s10controller.text} '),
-                Text('스크린수: ${scrcontroller.text}'),
-                Text('배급사: ${_selectedValue}'),
-                Text('메인장르: ${_gValue}'),
+                Text('스크린수: ${scrcontroller.text} '),
+                Text('배급사: ${_selectedValue} '),
+                Text('메인장르: ${_gValue} '),
               ],
             ),
             actions: [
@@ -1302,16 +1304,20 @@ class _FirstState extends State<First> {
         pred_result = jsondata["result"];
         print(pred_result);
              if (pred_result == "1") {
+        str0="300만 돌파 예상!";
         str = "예상 관객수: 약 300만~440만";
-        img_Path = "images/movieposter/c.png";
-      } else if (pred_result == "2") {
-        str = "예상 관객수: 약 440만 ~ 650만";
         img_Path = "images/movieposter/b.png";
+      } else if (pred_result == "2") {
+        str0="평타 예상!!";
+        str = "예상 관객수: 약 440만 ~ 650만";
+        img_Path = "images/movieposter/c.png";
       } else {
-        str = "대박 조짐!!! 예상 관객수: 약 650만 ~ 1000만";
+        str0= "대박 조짐!!!";
+        str = " 예상 관객수: 약 650만 ~ 1000만";
         img_Path = "images/movieposter/a.png";
       }
 
+      Result_msg.pre0 = str0;
       Result_msg.pre = str;
       Result_msg.img = img_Path;
       Navigator.of(context).pop();

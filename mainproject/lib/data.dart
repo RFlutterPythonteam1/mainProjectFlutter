@@ -149,5 +149,6 @@ class JoActorInfo {
 class Result_msg{
   static String pre="";
   static String img="";
+  static String pre0="";
 }
 
