@@ -1302,13 +1302,13 @@ class _FirstState extends State<First> {
         pred_result = jsondata["result"];
         print(pred_result);
              if (pred_result == "1") {
-        str = "관객수 약300만으로 예측됩니다.";
+        str = "예상 관객수: 약 300만 이하";
         img_Path = "images/movieposter/c.png";
       } else if (pred_result == "2") {
-        str = "약 300만 ~ 만의 관객수가 예측됩니다.";
+        str = "예상 관객수: 약 300만 ~ 만";
         img_Path = "images/movieposter/b.png";
       } else {
-        str = "예측되는 관객수는 500만 ~ 700만입니다.";
+        str = "대박 조짐!!! 예상 관객수: 약 500만 ~ 700만";
         img_Path = "images/movieposter/a.png";
       }
 
