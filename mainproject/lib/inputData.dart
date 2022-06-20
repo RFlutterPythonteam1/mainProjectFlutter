@@ -46,9 +46,13 @@ class _FirstState extends State<First> {
   late int current_score;
   late String current_movie_path;
 
+  late String pred_result;
+
   @override
   void initState() {
     super.initState();
+
+    pred_result = '0';
 
     dcontroller = TextEditingController();
     mcontroller = TextEditingController();
@@ -1049,6 +1053,9 @@ class _FirstState extends State<First> {
               Center(
                 child: TextButton(
                     onPressed: () {
+                      findscore();
+                      predict();
+
                       Navigator.of(context).pop();
                     },
                     child: const Text('예측하기')),
@@ -1060,7 +1067,7 @@ class _FirstState extends State<First> {
 
   getJuActorInfo() async {
     var url = Uri.parse(
-        'http://192.168.1.8:8080/Flutter/movie_ju_actors.jsp?director_id=${Message.director_id}');
+        'http://localhost:8080/Flutter/movie_ju_actors.jsp?director_id=${Message.director_id}');
     var response = await http.get(url);
     print('debug :$url');
     setState(() {
@@ -1121,7 +1128,7 @@ class _FirstState extends State<First> {
 
   getJoActorInfo() async {
     var url = Uri.parse(
-        'http://192.168.1.8:8080/Flutter/movie_jo_actors.jsp?director_id=${Message.director_id}');
+        'http://localhost:8080/Flutter/movie_jo_actors.jsp?director_id=${Message.director_id}');
     var response = await http.get(url);
     print('debug :$url');
     setState(() {
@@ -1178,5 +1185,35 @@ class _FirstState extends State<First> {
       //       'debug: ${JoActors.joActors[i].jo_actor_name}  ${JoActors.joActors[i].joActor_score} ${JoActors.joActors[i].jo_movie_imgPath1} ${JoActors.joActors[i].jo_movie_imaPath2}');
       // }
     });
+  }
+
+  // functions
+
+    predict() async{
+
+    double dis = 2;
+    double genre = 10;
+    double diract = 3;
+    double ju = 4;
+    double screen = 339;
+    double jo = 2.6;
+
+    // dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6 
+    
+    var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6");
+    
+    var response = await http.get(url);
+
+    var jsondata = json.decode(utf8.decode(response.bodyBytes));
+
+    
+    setState(() {
+      pred_result = jsondata["result"];
+      print(pred_result);
+    });
+
+  }
+
+  findscore(){
   }
 } // End
