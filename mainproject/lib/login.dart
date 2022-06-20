@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.1.8:8080/Flutter/movie_login.jsp?u_id=${idcontroller.text.trim()}');
+        'http://localhost:8080/Flutter/movie_login.jsp?u_id=${idcontroller.text.trim()}');
     var response = await http.get(url);
     //print('debug: $url');
 
@@ -182,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
 
   getDistributorInfo() async {
     var url =
-        Uri.parse('http://192.168.1.8:8080/Flutter/movie_distributor.jsp');
+        Uri.parse('http://localhost:8080/Flutter/movie_distributor.jsp');
     var response = await http.get(url);
     //print('debug :$url');
     setState(() {
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   getGenreInfo() async {
-    var url = Uri.parse('http://192.168.1.8:8080/Flutter/movie_genre.jsp');
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_genre.jsp');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -216,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   getDirectorInfo() async {
-    var url = Uri.parse('http://192.168.1.8:8080/Flutter/movie_directors.jsp');
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_directors.jsp');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));

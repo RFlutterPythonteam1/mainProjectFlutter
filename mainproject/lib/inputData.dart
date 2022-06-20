@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mainproject/data.dart';
+import 'package:http/http.dart' as http;
+
 
 class First extends StatefulWidget {
   const First({Key? key}) : super(key: key);
@@ -31,6 +35,8 @@ class _FirstState extends State<First> {
   late TextEditingController s9controller;
   late TextEditingController s10controller;
   late TextEditingController scrcontroller;
+  
+  late String pred_result;
 
   final List<String> _valueList = Distributor.distributor_name;
   //String _selectedValue = "CJ ENM";
@@ -42,6 +48,7 @@ class _FirstState extends State<First> {
   @override
   void initState() {
     super.initState();
+    pred_result = '0';
 
     dcontroller = TextEditingController();
     mcontroller = TextEditingController();
@@ -543,6 +550,7 @@ class _FirstState extends State<First> {
                 child: const Text('선택완료'),
               ),
             ),
+            Text('예측 클러스터는' + pred_result),
           ]),
         ),
       ),
@@ -696,12 +704,42 @@ class _FirstState extends State<First> {
               Center(
                 child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      // Navigator.of(context).pop();
+                      predict();
                     },
-                    child: const Text('예측하기')),
+                    child: Text('예측하기')),
               ),
             ],
           );
         });
   }
-}
+
+  // functions
+
+  predict() async{
+
+    double dis = 2;
+    double genre = 10;
+    double diract = 3;
+    double ju = 4;
+    double screen = 339;
+    double jo = 2.6;
+
+    // dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6 
+    
+    var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6");
+    
+    var response = await http.get(url);
+
+    var jsondata = json.decode(utf8.decode(response.bodyBytes));
+
+    
+    setState(() {
+      pred_result = jsondata["result"];
+      print(pred_result);
+    });
+
+  }
+
+
+}//End
