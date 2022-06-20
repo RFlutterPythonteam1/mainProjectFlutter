@@ -45,7 +45,7 @@ class MenuPage extends StatelessWidget {
           Navigator.pushNamed(context, '/Input');
         }
         if (str == "차트") {
-          Navigator.pushNamed(context, '/menu');
+          Navigator.pushNamed(context, '/chart');
         }
       },
       child: Container(
