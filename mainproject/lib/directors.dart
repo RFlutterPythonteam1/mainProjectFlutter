@@ -20,7 +20,10 @@ class _DirectorState extends State<Director> {
     dirname = [];
     imgindex = [];
     temp = [];
+<<<<<<< HEAD
     print(Directors.directors[107].movie_imgPath);
+=======
+>>>>>>> 46f8162491fc50fd173f2a7e3bd045d27341408d
     for(int i = 0 ; i < Directors.directors.length; i++ ){
       if(i != Directors.directors.length - 1 ){
         if(Directors.directors[i].director_name == Directors.directors[i+1].director_name){

@@ -10,12 +10,10 @@ String url_mysql = "jdbc:mysql://localhost/movie?serverTimezone=UTC&characterEnc
 String id_mysql = "root";
 String pw_mysql = "qwer1234";
 
-String query1 = "select d.director_id id, d.director_name name, d.director_score score, m.movie_name movie, m.movie_img img ";
-String query2 = "from director d left join direct dt on d.director_id = dt.director_id ";
-String query3 = "join movie m on dt.movie_id = m.movie_id ";
-String query4 = "";
-String query5 = "order by d.director_name";
-String query = query1 + query2 + query3 + query4 + query5; 
+String query1 = "select da.director_name,da.actor_name,da.director_actor_score ";
+String query2 = "from director ";
+String query3 = "join director_actor as da on da.director_actor_id = director.director_id ";
+String query = query1 + query2 + query3 ; 
 
 JSONObject jsonList = new JSONObject();
 JSONArray itemList = new JSONArray();
@@ -29,11 +27,9 @@ try{
 
     while(rs.next()){
         JSONObject tempJson = new JSONObject();  
-        tempJson.put("director_id", rs.getString(1));
-        tempJson.put("director_name", rs.getString(2));
-        tempJson.put("director_score", rs.getString(3));
-        tempJson.put("movie_name", rs.getString(4));
-        tempJson.put("movie_imgPath", rs.getString(5));
+        tempJson.put("director_name", rs.getString(1));
+        tempJson.put("actor_name", rs.getString(2));
+        tempJson.put("director_actor_score", rs.getString(3));
         itemList.add(tempJson);
     }
 
