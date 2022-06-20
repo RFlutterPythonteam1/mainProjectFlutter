@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     getDistributorInfo();
     getGenreInfo();
     getDirectorInfo();
+    getDiractInfo();
   }
 
   @override
@@ -227,9 +228,29 @@ class _LoginPageState extends State<LoginPage> {
         Directors.directors.add(DirectorInfo(
             director_id: int.parse(result[i]['director_id']),
             director_name: result[i]['director_name'],
-            director_score: int.parse(result[i]['director_score']),
+            director_score: double.parse(result[i]['director_score']),
             movie_name: result[i]['movie_name'],
             movie_imgPath: result[i]['movie_imgPath']));
+      }
+      //print(Directors.directors[0].director_name);
+    });
+  }
+
+  getDiractInfo() async{
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_director_actor.jsp');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      //print('debug :$result');
+      Diracts.diracts.clear();
+      for (int i = 0; i < result.length; i++) {
+        Diracts.diracts.add(DiractInfo(
+
+            director_name: result[i]['director_name'],
+            actor_name: result[i]['actor_name'],
+            diract_score: double.parse(result[i]['director_actor_score']),
+        ));
       }
       //print(Directors.directors[0].director_name);
     });

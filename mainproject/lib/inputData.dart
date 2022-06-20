@@ -43,14 +43,24 @@ class _FirstState extends State<First> {
   late String _gValue = _gList[0].toString();
 
   late String current_name;
-  late int current_score;
+  late double current_score;
   late String current_movie_path;
 
   late String pred_result;
 
+  late List jo_score;
+  late List ju_score;
+  late List jo_name;
+  late List ju_name;
+
   @override
   void initState() {
     super.initState();
+
+    jo_name = [];
+    jo_score = [];
+    ju_name = [];
+    ju_score = [];
 
     pred_result = '0';
 
@@ -858,6 +868,8 @@ class _FirstState extends State<First> {
                 child: const Text('선택완료'),
               ),
             ),
+            Text(pred_result.toString())
+            
           ]),
         ),
       ),
@@ -1043,7 +1055,9 @@ class _FirstState extends State<First> {
               children: [
                 Text('감독: ${dcontroller.text}'),
                 Text(
-                    '주연: ${mcontroller.text} ${m2controller.text} ${m3controller.text} ${m4controller.text}'),
+                    '주연: ${mcontroller.text} ${m2controller.text} ${m3controller.text} ${m4controller.text} ${m5controller.text} ${m6controller.text} ${m7controller.text} ${m8controller.text} ${m9controller.text} ${m10controller.text}'),
+                Text(
+                    '조연: ${scontroller.text} ${s2controller.text} ${s3controller.text} ${s4controller.text} ${s5controller.text} ${s6controller.text} ${s7controller.text} ${s8controller.text} ${s9controller.text} ${s10controller.text} '),
                 Text('스크린수: ${scrcontroller.text}'),
                 Text('배급사: ${_selectedValue}'),
                 Text('메인장르: ${_gValue}'),
@@ -1077,7 +1091,7 @@ class _FirstState extends State<First> {
       // 데이터 초기화
       JuActors.juActors.clear();
       current_name = result[0]['ju_actor_name'].toString(); // 첫번째 배우이름
-      current_score = int.parse(result[0]['ju_actor_score']); // 첫번째 배우점수
+      current_score = double.parse(result[0]['ju_actor_score']); // 첫번째 배우점수
       current_movie_path = result[0]['movie_img'].toString(); // 첫번째 배우 출연영화
 
       for (int i = 1; i < result.length; i++) {
@@ -1090,7 +1104,7 @@ class _FirstState extends State<First> {
               ju_movie_imgPath1: current_movie_path,
               ju_movie_imaPath2: result[i - 1]['movie_img'].toString()));
           current_name = result[i]['ju_actor_name'].toString();
-          current_score = int.parse(result[i]['ju_actor_score']);
+          current_score = double.parse(result[i]['ju_actor_score']);
           current_movie_path = result[i]['movie_img'].toString();
         }
 
@@ -1106,7 +1120,7 @@ class _FirstState extends State<First> {
 
             JuActors.juActors.add(JuActorInfo(
                 ju_actor_name: result[i]['ju_actor_name'].toString(),
-                juActor_score: int.parse(result[i]['ju_actor_score']),
+                juActor_score: double.parse(result[i]['ju_actor_score']),
                 ju_movie_imgPath1: result[i]['movie_img'].toString(),
                 ju_movie_imaPath2: result[i]['movie_img'].toString()));
           } else {
@@ -1138,7 +1152,7 @@ class _FirstState extends State<First> {
       // 데이터 초기화
       JoActors.joActors.clear();
       current_name = result[0]['jo_actor_name'].toString(); // 첫번째 배우이름
-      current_score = int.parse(result[0]['jo_actor_score']); // 첫번째 배우점수
+      current_score = double.parse(result[0]['jo_actor_score']); // 첫번째 배우점수
       current_movie_path = result[0]['movie_img'].toString(); // 첫번째 배우 출연영화
 
       for (int i = 1; i < result.length; i++) {
@@ -1151,7 +1165,7 @@ class _FirstState extends State<First> {
               jo_movie_imgPath1: current_movie_path,
               jo_movie_imaPath2: result[i - 1]['movie_img'].toString()));
           current_name = result[i]['jo_actor_name'].toString();
-          current_score = int.parse(result[i]['jo_actor_score']);
+          current_score = double.parse(result[i]['jo_actor_score']);
           current_movie_path = result[i]['movie_img'].toString();
         }
 
@@ -1167,7 +1181,7 @@ class _FirstState extends State<First> {
 
             JoActors.joActors.add(JoActorInfo(
                 jo_actor_name: result[i]['jo_actor_name'].toString(),
-                joActor_score: int.parse(result[i]['jo_actor_score']),
+                joActor_score: double.parse(result[i]['jo_actor_score']),
                 jo_movie_imgPath1: result[i]['movie_img'].toString(),
                 jo_movie_imaPath2: result[i]['movie_img'].toString()));
           } else {
@@ -1191,16 +1205,56 @@ class _FirstState extends State<First> {
 
     predict() async{
 
-    double dis = 2;
-    double genre = 10;
-    double diract = 3;
+    int dis = 2;
+    int genre = 10;
+    double diract = 0;
     double ju = 4;
+    double dir = 2;
     double screen = 339;
     double jo = 2.6;
 
     // dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6 
     
-    var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis=2&genre=10&diract=3&ju=4&dir=2&screen=339&jo=2.6");
+    dir = Message.director_score;
+    screen = scrcontroller.text.isNotEmpty ?  double.parse(scrcontroller.text) : screen;
+    
+    for(int i =0 ; i<Genre.genre.length ; i++){
+      if(Genre.genre[i] == _gValue){
+        genre = Genre.genre_score[i];
+      }
+    }
+    for(int i =0 ; i<Distributor.distributor_name.length ; i++){
+      if(Distributor.distributor_name[i] == _selectedValue){
+        dis = Distributor.distributor_score[i];
+      }
+    }
+
+    if(ju_score.isNotEmpty){
+      print(ju_score[ju_score.length-1]);
+      ju = ju_score[ju_score.length-1];
+    }
+    if(jo_score.length >= 3){
+      jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) + double.parse(jo_score[jo_score.length-3]))/3;
+    }else if(jo_score.length >= 2){
+      jo = (double.parse(jo_score[jo_score.length-1]) + double.parse(jo_score[jo_score.length-2]) )/2;
+    }else if(jo_score.length >= 1){
+      jo = jo_score[jo_score.length-1];
+    }
+
+    for(int i = 0 ; i >Diracts.diracts.length ; i++){
+      for(int j = 0; j < ju_name.length ; j++){
+        if((ju_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
+          diract = diract + 1;
+        }
+      }
+      for(int j = 0; j < jo_name.length ; j++){
+        if((jo_name[j] == Diracts.diracts[i].actor_name) & (Message.msg == Diracts.diracts[i].director_name)){
+          diract = diract + 0.83;
+        }
+      }
+    }
+
+    var  url = Uri.parse("http://localhost:8080/Rserve/movie_predict.jsp?dis="+ dis.toString() +"&genre="+ genre.toString()+ "&diract="+ diract.toString()+ "&ju=" + ju.toString()+"&dir="+dir.toString()+"&screen="+screen.toString()+"&jo="+jo.toString());
     
     var response = await http.get(url);
 
@@ -1215,5 +1269,90 @@ class _FirstState extends State<First> {
   }
 
   findscore(){
+    if(mcontroller.text.isNotEmpty){
+      ju_score.add(Message.actor_score);
+      ju_name.add(Message.actor);
+    }
+    if(m2controller.text.isNotEmpty){
+      ju_score.add(Message.actor2_score);
+      ju_name.add(Message.actor2);
+    }
+    if(m3controller.text.isNotEmpty){
+      ju_score.add(Message.actor3_score);
+      ju_name.add(Message.actor3);
+    }
+    if(m4controller.text.isNotEmpty){
+      ju_score.add(Message.actor4_score);
+      ju_name.add(Message.actor4);
+    }
+    if(m5controller.text.isNotEmpty){
+      ju_score.add(Message.actor5_score);
+      ju_name.add(Message.actor5);
+    }
+    if(m6controller.text.isNotEmpty){
+      ju_score.add(Message.actor6_score);
+      ju_name.add(Message.actor6);
+    }
+    if(m7controller.text.isNotEmpty){
+      ju_score.add(Message.actor7_score);
+      ju_name.add(Message.actor7);
+    }
+    if(m8controller.text.isNotEmpty){
+      ju_score.add(Message.actor8_score);
+      ju_name.add(Message.actor8);
+    }
+    if(m9controller.text.isNotEmpty){
+      ju_score.add(Message.actor9_score);
+      ju_name.add(Message.actor9);
+    }
+    if(m10controller.text.isNotEmpty){
+      ju_score.add(Message.actor10_score);
+      ju_name.add(Message.actor10);
+    }
+
+    if(scontroller.text.isNotEmpty){
+      jo_score.add(Message.subactor_score);
+      jo_name.add(Message.subactor);
+    }
+    if(s2controller.text.isNotEmpty){
+      jo_score.add(Message.subactor2_score);
+      jo_name.add(Message.subactor2);
+    }
+    if(s3controller.text.isNotEmpty){
+      jo_score.add(Message.subactor3_score);
+      jo_name.add(Message.subactor3);
+    }
+    if(s4controller.text.isNotEmpty){
+      jo_score.add(Message.subactor4_score);
+      jo_name.add(Message.subactor4);
+    }
+    if(s5controller.text.isNotEmpty){
+      jo_score.add(Message.subactor5_score);
+      jo_name.add(Message.subactor5);
+    }
+    if(s6controller.text.isNotEmpty){
+      jo_score.add(Message.subactor6_score);
+      jo_name.add(Message.subactor6);
+    }
+    if(s7controller.text.isNotEmpty){
+      jo_score.add(Message.subactor7_score);
+      jo_name.add(Message.subactor7);
+    }
+    if(s8controller.text.isNotEmpty){
+      jo_score.add(Message.subactor8_score);
+      jo_name.add(Message.subactor8);
+    }
+    if(s9controller.text.isNotEmpty){
+      jo_score.add(Message.subactor9_score);
+      jo_name.add(Message.subactor9);
+    }
+    if(s10controller.text.isNotEmpty){
+      jo_score.add(Message.subactor10_score);
+      jo_name.add(Message.subactor10);
+    }
+
+    ju_score.sort();
+    jo_score.sort();
+    
   }
 } // End
