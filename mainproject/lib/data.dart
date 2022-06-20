@@ -145,3 +145,10 @@ class JoActorInfo {
       required this.jo_movie_imgPath1,
       required this.jo_movie_imaPath2});
 }
+
+class Result_msg{
+  static String pre="";
+  static String img="";
+  static String pre0="";
+}
+

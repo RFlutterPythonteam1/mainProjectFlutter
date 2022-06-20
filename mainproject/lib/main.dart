@@ -5,6 +5,7 @@ import 'package:mainproject/jo_actor.dart';
 import 'package:mainproject/ju_actor.dart';
 import 'package:mainproject/login.dart';
 import 'package:mainproject/menu.dart';
+import 'package:mainproject/predict.dart';
 import 'package:mainproject/singup.dart';
 import 'package:mainproject/test.dart';
 
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/actor': (context) => const Actor(),
         '/signup': (context) => const SignUp(),
         '/menu': (context) => MenuPage(),
+        '/predict': (context) => const Predict(),
+        
       },
       initialRoute: '/Login',
     );
