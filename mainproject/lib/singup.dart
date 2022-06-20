@@ -39,13 +39,29 @@ class _SignUpState extends State<SignUp> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("회원가입"),
-        ),
+         backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        primary: true,
+        elevation: 0,
+      ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(children: [
               const SizedBox(
+                height: 20,
+              ),
+              const Text(
+              '회원가입',
+              style: TextStyle(
+                fontSize: 40,
+                letterSpacing: 5,
+                color: Colors.white,
+                fontStyle: FontStyle.normal,
+              ),
+            ),
+            const SizedBox(
                 height: 20,
               ),
               Padding(

@@ -35,72 +35,100 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('To do List'),
-          titleTextStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 30,
-            letterSpacing: 13,
-            fontWeight: FontWeight.bold,
-          ),
-          backgroundColor: Colors.white,
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 150,
+        backgroundColor: Colors.limeAccent,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        primary: true,
+        elevation: 0,
+      ),
+      body: Center(
+        child: Column(
+          children: [       
+                SizedBox(
+                  height: 100,
                 ),
                 const Text(
-                  "Log In",
+                  '로그인',
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                    letterSpacing: 10,
+                    fontSize: 40,
+                    letterSpacing: 5,
+                    color: Colors.white,
+                    fontStyle: FontStyle.normal,
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: TextField(
-                    controller: idcontroller,
-                    decoration: const InputDecoration(
-                      labelText: 'ID를 입력해주세요.',
-                    ),
-                    keyboardType: TextInputType.text,
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                controller: idcontroller,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: Colors.white,
                   ),
+                  hintText: '아이디를 입력해주세요.',
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: TextField(
-                    controller: pwcontroller,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: 'PW를 입력해주세요.',
-                    ),
-                    keyboardType: TextInputType.text,
+                keyboardType: TextInputType.text,
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                controller: pwcontroller,
+                 obscureText: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                  
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: Colors.white,
                   ),
+                  hintText: '비밀번호를 입력해주세요.',
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (inputDataCheck()) {
+                keyboardType: TextInputType.text,
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (inputDataCheck()) {
                       insertAction();
                     }
-                  },
-                  child: const Text('로그인'),
-                ),
-              ],
+              },
+              child: Text('로그인'),
             ),
-          ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signup');
+                },
+                child: Text(
+                  '회원가입',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ])
+          ],
         ),
+      ),
       ),
     );
   }
@@ -166,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                           pwcontroller.clear();
 
                           Navigator.of(context).pop();
-                          Navigator.pushNamed(context, '/Input');
+                          Navigator.pushNamed(context, '/menu');
                           //Navigator.pushNamed(context, '/T');
                         },
                         child: const Text('확인'))

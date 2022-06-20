@@ -4,6 +4,7 @@ import 'package:mainproject/inputData.dart';
 import 'package:mainproject/jo_actor.dart';
 import 'package:mainproject/ju_actor.dart';
 import 'package:mainproject/login.dart';
+import 'package:mainproject/menu.dart';
 import 'package:mainproject/singup.dart';
 import 'package:mainproject/test.dart';
 
@@ -26,8 +27,11 @@ class MyApp extends StatelessWidget {
         '/director': (context) => const Director(),
         '/actor2': (context) => const Actor2(),
         '/actor': (context) => const Actor(),
+        '/signup': (context) => const SignUp(),
+        '/menu': (context) => MenuPage(),
       },
       initialRoute: '/Login',
     );
+
   }
 }
