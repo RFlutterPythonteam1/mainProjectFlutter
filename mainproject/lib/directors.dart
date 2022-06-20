@@ -52,17 +52,31 @@ class _DirectorState extends State<Director> {
         reverse: true,
         child: Column(
           children: [
-            SizedBox(
-                child: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      searchindex = [];
-                      searchdir();
-                    });
-                  },
-                  controller: tec1,
-                ),
-              )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                    IconButton(
+                      onPressed: () {
+                        //
+                      },
+                      icon: const Icon(
+                        Icons.search,
+                      ),
+                   ),
+                SizedBox(
+                  width:280,
+                    child: TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          searchindex = [];
+                          searchdir();
+                        });
+                      },
+                      controller: tec1,
+                    ),
+                  ),
+              ],
+            )
               ,
       
             SizedBox(

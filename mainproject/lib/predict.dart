@@ -30,7 +30,7 @@ class Predict extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text('${Result_msg.pre}',
                style: const TextStyle(
-                fontSize: 15,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
               ),
