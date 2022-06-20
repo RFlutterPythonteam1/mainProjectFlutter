@@ -47,6 +47,8 @@ class _FirstState extends State<First> {
   late String current_movie_path;
 
   late String pred_result;
+  late String str;
+  late String img_Path;
 
   late List jo_score;
   late List ju_score;
@@ -63,6 +65,8 @@ class _FirstState extends State<First> {
     ju_score = [];
 
     pred_result = '0';
+    str = '';
+    img_Path = '';
 
     dcontroller = TextEditingController();
     mcontroller = TextEditingController();
@@ -1297,6 +1301,21 @@ class _FirstState extends State<First> {
       setState(() {
         pred_result = jsondata["result"];
         print(pred_result);
+             if (pred_result == "1") {
+        str = "관객수 약300만으로 예측됩니다.";
+        img_Path = "images/movieposter/c.png";
+      } else if (pred_result == "2") {
+        str = "약 300만 ~ 만의 관객수가 예측됩니다.";
+        img_Path = "images/movieposter/b.png";
+      } else {
+        str = "예측되는 관객수는 500만 ~ 700만입니다.";
+        img_Path = "images/movieposter/a.png";
+      }
+
+      Result_msg.pre = str;
+      Result_msg.img = img_Path;
+      Navigator.of(context).pop();
+      Navigator.pushNamed(context, "/predict");
       });
 
     //
