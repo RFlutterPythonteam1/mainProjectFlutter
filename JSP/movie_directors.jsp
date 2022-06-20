@@ -13,7 +13,7 @@ String pw_mysql = "qwer1234";
 String query1 = "select d.director_id id, d.director_name name, d.director_score score, m.movie_name movie, m.movie_img img ";
 String query2 = "from director d left join direct dt on d.director_id = dt.director_id ";
 String query3 = "join movie m on dt.movie_id = m.movie_id ";
-String query4 = "group by d.director_id ";
+String query4 = "";
 String query5 = "order by d.director_name";
 String query = query1 + query2 + query3 + query4 + query5; 
 
