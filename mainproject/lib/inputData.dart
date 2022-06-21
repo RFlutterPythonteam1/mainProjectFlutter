@@ -1125,7 +1125,6 @@ class _FirstState extends State<First> {
     setState(() {
       setInputInit();
       dcontroller.text = Message.director;
-      Message.director_score = Message.temp_actor_score;
     });
   }
 
