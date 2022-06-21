@@ -25,7 +25,9 @@ class _LoginPageState extends State<LoginPage> {
     getDistributorInfo();
     getGenreInfo();
     getDirectorInfo();
-    getDiractInfo();
+    getDirectorActorInfo();
+    getJuActorInfor();
+    getJoActorInfor();
   }
 
   @override
@@ -70,12 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                  hintText: '아이디를 입력해주세요.',
-                ),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+                      hintText: '아이디를 입력해주세요.',
+                    ),
+                
                 keyboardType: TextInputType.text,
               ),
             ),
@@ -92,13 +95,13 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
-                  
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.white,
-                  ),
-                  hintText: '비밀번호를 입력해주세요.',
-                ),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
+                      hintText: '비밀번호를 입력해주세요.',
+                    ),
+              
                 keyboardType: TextInputType.text,
               ),
             ),
@@ -261,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       List result = dataConvertedJSON['results'];
-      //print('debug :$result');
+      //print('debug director:$result');
       Directors.directors.clear();
       for (int i = 0; i < result.length; i++) {
         Directors.directors.add(DirectorInfo(
@@ -275,30 +278,65 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  getDiractInfo() async{
-    var url = Uri.parse('http://localhost:8080/Flutter/movie_director_actor.jsp');
+  getDirectorActorInfo() async {
+    var url =
+        Uri.parse('http://localhost:8080/Flutter/movie_director_actor.jsp');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       List result = dataConvertedJSON['results'];
-      //print('debug :$result');
       Diracts.diracts.clear();
       for (int i = 0; i < result.length; i++) {
         Diracts.diracts.add(DiractInfo(
-
             director_name: result[i]['director_name'],
             actor_name: result[i]['actor_name'],
-            diract_score: double.parse(result[i]['director_actor_score']),
-        ));
+            diract_score: result[i]
+                ['director_actor_score'])); // double 설정 시 에러발생
       }
-      //print(Directors.directors[0].director_name);
     });
   }
-}//end
 
+  getJuActorInfor() async {
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_ju_actors.jsp');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      JuActors.juActors.clear();
+      for (int i = 0; i < result.length; i++) {
+        JuActors.juActors.add(JuActorInfo(
+            ju_actor_name: result[i]['ju_actor_name'],
+            juActor_score: result[i]['ju_actor_score'],
+            ju_movie_imgPath: result[i]['movie_img']));
 
-    
+        JuActors.JuActorsBackup.add(JuActorInfo(
+            ju_actor_name: result[i]['ju_actor_name'],
+            juActor_score: result[i]['ju_actor_score'],
+            ju_movie_imgPath: result[i]['movie_img']));
+      }
+    });
+    print('debug login : ${JuActors.JuActorsBackup.length}');
+  }
 
+  getJoActorInfor() async {
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_jo_actors.jsp');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      JoActors.joActors.clear();
+      for (int i = 0; i < result.length; i++) {
+        JoActors.joActors.add(JoActorInfo(
+            jo_actor_name: result[i]['jo_actor_name'],
+            joActor_score: result[i]['jo_actor_score'],
+            jo_movie_imgPath: result[i]['movie_img']));
 
-
-    
+        JoActors.joActorsBackup.add(JoActorInfo(
+            jo_actor_name: result[i]['jo_actor_name'],
+            joActor_score: result[i]['jo_actor_score'],
+            jo_movie_imgPath: result[i]['movie_img']));
+      }
+      print('debug : ${JoActors.joActors.length}');
+    });
+  }
+} //end

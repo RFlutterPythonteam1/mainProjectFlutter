@@ -240,7 +240,7 @@ class _SignUpState extends State<SignUp> {
 
   insertAction() async {
     var url = Uri.parse(
-        'http://192.168.1.8:8080/Flutter/movie_insert_user.jsp?u_id=${useridController.text.trim()}&u_pw=${passwdController.text.trim()}&u_name=${nameController.text.trim()}&u_email=${emailController.text.trim()}');
+        'http://localhost:8080/Flutter/movie_insert_user.jsp?u_id=${useridController.text.trim()}&u_pw=${passwdController.text.trim()}&u_name=${nameController.text.trim()}&u_email=${emailController.text.trim()}');
     //print(url);
     var response = await http.get(url);
 

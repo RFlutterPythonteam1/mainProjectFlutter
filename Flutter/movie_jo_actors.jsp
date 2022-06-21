@@ -13,12 +13,7 @@ String pw_mysql = "qwer1234";
 String director_id= request.getParameter("director_id");
 
 
-String query1 = "select jo_actor.jo_actor_name, jo_actor.jo_actor_score, movie.movie_img ";
-String query2 = "from jo_actor ";
-String query3 = "join jo_in on jo_in.jo_actor_id = jo_actor.jo_actor_id ";
-String query4 = "join movie on jo_in.movie_id = movie.movie_id ";
-String query5 = "order by jo_actor_name";
-String query = query1 + query2 + query3 + query4 + query5; 
+String query = " select jo_actor.jo_actor_name, jo_actor.jo_actor_score, movie.movie_img movie from jo_actor left join jo_in on jo_actor.jo_actor_id = jo_in.jo_actor_id join movie on jo_in.movie_id = movie.movie_id";
 
 JSONObject jsonList = new JSONObject();
 JSONArray itemList = new JSONArray();

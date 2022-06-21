@@ -1,39 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:mainproject/data.dart';
 
-class Actor extends StatefulWidget {
-  const Actor({Key? key}) : super(key: key);
+class JuActor extends StatefulWidget {
+  const JuActor({Key? key}) : super(key: key);
 
   @override
-  State<Actor> createState() => _ActorState();
+  State<JuActor> createState() => _JuActorState();
 }
 
-class _ActorState extends State<Actor> {
+class _JuActorState extends State<JuActor> {
+  late String director;
+  late List dirname;
+  late List imgindex;
+  late List temp;
+
   final TextEditingController tec1 = TextEditingController();
   late List searchindex;
-  
-
 
   @override
   void initState() {
-    searchindex = [];
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    tec1.dispose();    
-    super.dispose();
+    //print('debug ju_test :${JuActors.juActors.length}');
+    dirname = [];
+    imgindex = [];
+    temp = [];
+    for (int i = 0; i < JuActors.juActors.length; i++) {
+      if (i != JuActors.juActors.length - 1) {
+        if (JuActors.juActors[i].ju_actor_name ==
+            JuActors.juActors[i + 1].ju_actor_name) {
+          temp.add(i);
+        } else {
+          temp.add(i);
+          dirname.add(JuActors.juActors[i].ju_actor_name);
+          imgindex.add(temp);
+          temp = [];
+        }
+      } else {
+        temp.add(JuActors.juActors.length - 1);
+        imgindex.add(temp);
+        temp = [];
+        dirname
+            .add(JuActors.juActors[JuActors.juActors.length - 1].ju_actor_name);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('주연'),
+        title: const Text('주연배우'),
       ),
       body: SingleChildScrollView(
         reverse: true,
@@ -44,248 +60,117 @@ class _ActorState extends State<Actor> {
                 onChanged: (value) {
                   setState(() {
                     searchindex = [];
-                    searchju();
+                    searchdir();
                   });
                 },
                 controller: tec1,
-                
               ),
-            )
-            ,
+            ),
             SizedBox(
               width: 300,
               height: 500,
               child: JuActors.juActors.isEmpty
                   ? const Text('데이터가 없습니다.')
-                  : tec1.text.isNotEmpty ? 
-                      ListView.builder(
-                      itemCount: searchindex.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              if (Message.actor.isEmpty) {
-                                Message.actor =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor_score);
-                              } else if (Message.actor2.isEmpty) {
-                                Message.actor2 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor2_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor2_score);
-                              } else if (Message.actor3.isEmpty) {
-                                Message.actor3 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor3_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor3_score);
-                              } else if (Message.actor4.isEmpty) {
-                                Message.actor4 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor4_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor4_score);
-                              } else if (Message.actor5.isEmpty) {
-                                Message.actor5 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor5_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor5_score);
-                              } else if (Message.actor6.isEmpty) {
-                                Message.actor6 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor6_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor6_score);
-                              } else if (Message.actor7.isEmpty) {
-                                Message.actor7 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor7_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor7_score);
-                              } else if (Message.actor8.isEmpty) {
-                                Message.actor8 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor8_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor8_score);
-                              } else if (Message.actor9.isEmpty) {
-                                Message.actor9 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor9_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor9_score);
-                              } else if (Message.actor10.isEmpty) {
-                                Message.actor10 =
-                                    JuActors.juActors[searchindex[index]].ju_actor_name;
-                                Message.actor10_score =
-                                    JuActors.juActors[searchindex[index]].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor10_score);
-                              }
-                              Navigator.of(context).pop;
-                              Navigator.pop(context);
-                            },
-                            child: Card(
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          JuActors.juActors[searchindex[index]].ju_actor_name,
-                                        ),
-                                        Image.asset(
-                                          JuActors.juActors[searchindex[index]].ju_movie_imgPath1,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        Image.asset(
-                                          JuActors.juActors[searchindex[index]].ju_movie_imaPath2,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ],
+                  : tec1.text.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: searchindex.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Message.msg = JuActors
+                                      .juActors[imgindex[searchindex[index]][0]]
+                                      .ju_actor_name;
+                                  Message.temp_actor_score = double.parse(
+                                      JuActors
+                                          .juActors[imgindex[searchindex[index]]
+                                              [0]]
+                                          .juActor_score);
+
+                                  Navigator.pop(context);
+                                },
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: SizedBox(
+                                    width: 800,
+                                    child: Card(
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      30.0),
+                                                  child: SizedBox(
+                                                    width: 50,
+                                                    child: Text(dirname[index]),
+                                                  ),
+                                                ),
+                                                poster(index),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    )
-            
-                    :
-                    ListView.builder(
-                      itemCount: JuActors.juActors.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              if (Message.actor.isEmpty) {
-                                Message.actor =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor_score);
-                              } else if (Message.actor2.isEmpty) {
-                                Message.actor2 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor2_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor2_score);
-                              } else if (Message.actor3.isEmpty) {
-                                Message.actor3 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor3_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor3_score);
-                              } else if (Message.actor4.isEmpty) {
-                                Message.actor4 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor4_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor4_score);
-                              } else if (Message.actor5.isEmpty) {
-                                Message.actor5 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor5_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor5_score);
-                              } else if (Message.actor6.isEmpty) {
-                                Message.actor6 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor6_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor6_score);
-                              } else if (Message.actor7.isEmpty) {
-                                Message.actor7 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor7_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor7_score);
-                              } else if (Message.actor8.isEmpty) {
-                                Message.actor8 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor8_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor8_score);
-                              } else if (Message.actor9.isEmpty) {
-                                Message.actor9 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor9_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor9_score);
-                              } else if (Message.actor10.isEmpty) {
-                                Message.actor10 =
-                                    JuActors.juActors[index].ju_actor_name;
-                                Message.actor10_score =
-                                    JuActors.juActors[index].juActor_score;
-                                JuActors.selectIdx = index;
-                                JoActors.score.add(Message.actor10_score);
-                              }
-                              Navigator.of(context).pop;
-                              Navigator.pop(context);
-                            },
-                            child: Card(
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          JuActors.juActors[index].ju_actor_name,
-                                        ),
-                                        Image.asset(
-                                          JuActors.juActors[index].ju_movie_imgPath1,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        Image.asset(
-                                          JuActors.juActors[index].ju_movie_imaPath2,
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ],
+                            );
+                          },
+                        )
+                      : ListView.builder(
+                          itemCount: dirname.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Message.msg = JuActors
+                                      .juActors[imgindex[index][0]]
+                                      .ju_actor_name;
+                                  Message.subactor_score = double.parse(JuActors
+                                      .juActors[imgindex[index][0]]
+                                      .juActor_score);
+                                  setJuActorData(index);
+
+                                  Navigator.pop(context);
+                                },
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: SizedBox(
+                                    width: 800,
+                                    child: Card(
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      30.0),
+                                                  child: SizedBox(
+                                                    width: 50,
+                                                    child: Text(dirname[index]),
+                                                  ),
+                                                ),
+                                                poster(index),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                            );
+                          },
+                        ),
             ),
           ],
         ),
@@ -293,18 +178,39 @@ class _ActorState extends State<Actor> {
     );
   }
 
-  // functions 
+  //functions
 
-  searchju(){
+  searchdir() {
     setState(() {
-      
-    for (int i = 0 ; i < JuActors.juActors.length ; i++){
-      if(JuActors.juActors[i].ju_actor_name.length >= tec1.text.length){
-        if(JuActors.juActors[i].ju_actor_name.substring(0, tec1.text.length) == tec1.text ){
-          searchindex.add(i);
+      for (int i = 0; i < JuActors.juActors.length; i++) {
+        if (JuActors.juActors[i].ju_actor_name.length >= tec1.text.length) {
+          if (JuActors.juActors[i].ju_actor_name
+                  .substring(0, tec1.text.length) ==
+              tec1.text) {
+            searchindex.add(i);
+          }
         }
       }
-    }
     });
   }
+
+  setJuActorData(int index) {
+    for (int i = 0; i < imgindex[index].length; i++) {
+      JuActors.juActors.removeAt((imgindex[index][0]));
+    }
+  }
+
+  Widget poster(int index) {
+    List<Widget> resultList = [];
+    for (int i = 0; i < imgindex[index].length; i++) {
+      resultList.add(Image.asset(
+        JuActors.juActors[imgindex[index][i]].ju_movie_imgPath,
+        height: 100,
+        width: 100,
+        fit: BoxFit.contain,
+      ));
+    }
+    return Row(children: resultList);
+  }
 }// End
+
