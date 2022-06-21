@@ -12,6 +12,7 @@ class Message {
   static String msg = "";
   static double director_score = 0;
   static int director_id = 0;
+  static double temp_actor_score = 0;
 
   static String actor = "";
   static double actor_score = 0;
@@ -96,11 +97,11 @@ class DirectorInfo {
 class Diracts {
   static List<DiractInfo> diracts = [];
 }
+
 class DiractInfo {
   String director_name;
   String actor_name;
-  double diract_score;
-
+  String diract_score;
 
   DiractInfo(
       {required this.director_name,
@@ -110,45 +111,43 @@ class DiractInfo {
 
 class JuActors {
   static List<JuActorInfo> juActors = [];
+  static List<JuActorInfo> JuActorsBackup = [];
   static int selectIdx = -1;
   static List<double> score = [];
 }
 
 class JuActorInfo {
   String ju_actor_name;
-  double juActor_score;
-  String ju_movie_imgPath1;
-  String ju_movie_imaPath2;
+  String juActor_score;
+  String ju_movie_imgPath;
 
-  JuActorInfo(
-      {required this.ju_actor_name,
-      required this.juActor_score,
-      required this.ju_movie_imgPath1,
-      required this.ju_movie_imaPath2});
+  JuActorInfo({
+    required this.ju_actor_name,
+    required this.juActor_score,
+    required this.ju_movie_imgPath,
+  });
 }
 
 class JoActors {
   static List<JoActorInfo> joActors = [];
+  static List<JoActorInfo> joActorsBackup = [];
   static int selectIdx = -1;
   static List<double> score = [];
 }
 
 class JoActorInfo {
   String jo_actor_name;
-  double joActor_score;
-  String jo_movie_imgPath1;
-  String jo_movie_imaPath2;
+  String joActor_score;
+  String jo_movie_imgPath;
 
   JoActorInfo(
       {required this.jo_actor_name,
       required this.joActor_score,
-      required this.jo_movie_imgPath1,
-      required this.jo_movie_imaPath2});
+      required this.jo_movie_imgPath});
 }
 
-class Result_msg{
-  static String pre="";
-  static String img="";
-  static String pre0="";
+class Result_msg {
+  static String pre = "";
+  static String img = "";
+  static String pre0 = "";
 }
-

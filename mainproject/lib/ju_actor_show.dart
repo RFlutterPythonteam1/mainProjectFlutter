@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mainproject/data.dart';
 
-class JuActor extends StatefulWidget {
-  const JuActor({Key? key}) : super(key: key);
+class JuActorShow extends StatefulWidget {
+  const JuActorShow({Key? key}) : super(key: key);
 
   @override
-  State<JuActor> createState() => _JuActorState();
+  State<JuActorShow> createState() => _JuActorShowState();
 }
 
-class _JuActorState extends State<JuActor> {
+class _JuActorShowState extends State<JuActorShow> {
   late String director;
   late List dirname;
   late List imgindex;
@@ -79,15 +79,6 @@ class _JuActorState extends State<JuActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JuActors
-                                      .juActors[imgindex[searchindex[index]][0]]
-                                      .ju_actor_name;
-                                  Message.temp_actor_score = double.parse(
-                                      JuActors
-                                          .juActors[imgindex[searchindex[index]]
-                                              [0]]
-                                          .juActor_score);
-
                                   Navigator.pop(context);
                                 },
                                 child: SingleChildScrollView(
@@ -129,14 +120,6 @@ class _JuActorState extends State<JuActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JuActors
-                                      .juActors[imgindex[index][0]]
-                                      .ju_actor_name;
-                                  Message.subactor_score = double.parse(JuActors
-                                      .juActors[imgindex[index][0]]
-                                      .juActor_score);
-                                  setJuActorData(index);
-
                                   Navigator.pop(context);
                                 },
                                 child: SingleChildScrollView(
@@ -192,12 +175,6 @@ class _JuActorState extends State<JuActor> {
         }
       }
     });
-  }
-
-  setJuActorData(int index) {
-    for (int i = 0; i < imgindex[index].length; i++) {
-      JuActors.juActors.removeAt((imgindex[index][0]));
-    }
   }
 
   Widget poster(int index) {

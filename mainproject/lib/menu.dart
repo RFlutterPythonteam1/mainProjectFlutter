@@ -15,7 +15,7 @@ class MenuPage extends StatelessWidget {
       'title': '주연 배우',
       'backgroundColor': Colors.grey,
     },
-     {
+    {
       'title': '조연 배우',
       'backgroundColor': Colors.grey,
     },
@@ -36,10 +36,10 @@ class MenuPage extends StatelessWidget {
           Navigator.pushNamed(context, '/director');
         }
         if (str == "주연 배우") {
-          Navigator.pushNamed(context, '/actor');
+          Navigator.pushNamed(context, '/JuActorShow');
         }
         if (str == "조연 배우") {
-          Navigator.pushNamed(context, '/actor2');
+          Navigator.pushNamed(context, '/JoActorShow');
         }
         if (str == "예측") {
           Navigator.pushNamed(context, '/Input');

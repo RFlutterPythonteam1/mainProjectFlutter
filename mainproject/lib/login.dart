@@ -25,7 +25,9 @@ class _LoginPageState extends State<LoginPage> {
     getDistributorInfo();
     getGenreInfo();
     getDirectorInfo();
-    getDiractInfo();
+    getDirectorActorInfo();
+    getJuActorInfor();
+    getJoActorInfor();
   }
 
   @override
@@ -35,17 +37,18 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.limeAccent,
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        automaticallyImplyLeading: false,
-        primary: true,
-        elevation: 0,
-      ),
-      body: Center(
-        child: Column(
-          children: [       
-                SizedBox(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          automaticallyImplyLeading: false,
+          primary: true,
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(
                   height: 100,
                 ),
                 const Text(
@@ -57,78 +60,78 @@ class _LoginPageState extends State<LoginPage> {
                     fontStyle: FontStyle.normal,
                   ),
                 ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: TextField(
-                controller: idcontroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: TextField(
+                    controller: idcontroller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Colors.white,
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+                      hintText: '아이디를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
                   ),
-                  hintText: '아이디를 입력해주세요.',
                 ),
-                keyboardType: TextInputType.text,
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: TextField(
-                controller: pwcontroller,
-                 obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: TextField(
+                    controller: pwcontroller,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),
                       ),
-                  
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.white,
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
+                      hintText: '비밀번호를 입력해주세요.',
+                    ),
+                    keyboardType: TextInputType.text,
                   ),
-                  hintText: '비밀번호를 입력해주세요.',
                 ),
-                keyboardType: TextInputType.text,
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (inputDataCheck()) {
+                const SizedBox(
+                  height: 50,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (inputDataCheck()) {
                       insertAction();
                     }
-              },
-              child: Text('로그인'),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/signup');
-                },
-                child: Text(
-                  '회원가입',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  },
+                  child: const Text('로그인'),
                 ),
-              )
-            ])
-          ],
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: const Text(
+                      '회원가입',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ])
+              ],
+            ),
+          ),
         ),
-      ),
       ),
     );
   }
@@ -250,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       List result = dataConvertedJSON['results'];
-      //print('debug :$result');
+      //print('debug director:$result');
       Directors.directors.clear();
       for (int i = 0; i < result.length; i++) {
         Directors.directors.add(DirectorInfo(
@@ -264,30 +267,65 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  getDiractInfo() async{
-    var url = Uri.parse('http://localhost:8080/Flutter/movie_director_actor.jsp');
+  getDirectorActorInfo() async {
+    var url =
+        Uri.parse('http://localhost:8080/Flutter/movie_director_actor.jsp');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
       List result = dataConvertedJSON['results'];
-      //print('debug :$result');
       Diracts.diracts.clear();
       for (int i = 0; i < result.length; i++) {
         Diracts.diracts.add(DiractInfo(
-
             director_name: result[i]['director_name'],
             actor_name: result[i]['actor_name'],
-            diract_score: double.parse(result[i]['director_actor_score']),
-        ));
+            diract_score: result[i]
+                ['director_actor_score'])); // double 설정 시 에러발생
       }
-      //print(Directors.directors[0].director_name);
     });
   }
-}//end
 
+  getJuActorInfor() async {
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_ju_actors.jsp');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      JuActors.juActors.clear();
+      for (int i = 0; i < result.length; i++) {
+        JuActors.juActors.add(JuActorInfo(
+            ju_actor_name: result[i]['ju_actor_name'],
+            juActor_score: result[i]['ju_actor_score'],
+            ju_movie_imgPath: result[i]['movie_img']));
 
-    
+        JuActors.JuActorsBackup.add(JuActorInfo(
+            ju_actor_name: result[i]['ju_actor_name'],
+            juActor_score: result[i]['ju_actor_score'],
+            ju_movie_imgPath: result[i]['movie_img']));
+      }
+    });
+    print('debug login : ${JuActors.JuActorsBackup.length}');
+  }
 
+  getJoActorInfor() async {
+    var url = Uri.parse('http://localhost:8080/Flutter/movie_jo_actors.jsp');
+    var response = await http.get(url);
+    setState(() {
+      var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
+      List result = dataConvertedJSON['results'];
+      JoActors.joActors.clear();
+      for (int i = 0; i < result.length; i++) {
+        JoActors.joActors.add(JoActorInfo(
+            jo_actor_name: result[i]['jo_actor_name'],
+            joActor_score: result[i]['jo_actor_score'],
+            jo_movie_imgPath: result[i]['movie_img']));
 
-
-    
+        JoActors.joActorsBackup.add(JoActorInfo(
+            jo_actor_name: result[i]['jo_actor_name'],
+            joActor_score: result[i]['jo_actor_score'],
+            jo_movie_imgPath: result[i]['movie_img']));
+      }
+      print('debug : ${JoActors.joActors.length}');
+    });
+  }
+} //end

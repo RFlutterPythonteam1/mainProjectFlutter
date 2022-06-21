@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mainproject/data.dart';
 
-class JuActor extends StatefulWidget {
-  const JuActor({Key? key}) : super(key: key);
+class JoActorShow extends StatefulWidget {
+  const JoActorShow({Key? key}) : super(key: key);
 
   @override
-  State<JuActor> createState() => _JuActorState();
+  State<JoActorShow> createState() => _JoActorShowState();
 }
 
-class _JuActorState extends State<JuActor> {
+class _JoActorShowState extends State<JoActorShow> {
   late String director;
   late List dirname;
   late List imgindex;
@@ -20,27 +20,27 @@ class _JuActorState extends State<JuActor> {
   @override
   void initState() {
     super.initState();
-    //print('debug ju_test :${JuActors.juActors.length}');
+    print('debug ju_test :${JoActors.joActors.length}');
     dirname = [];
     imgindex = [];
     temp = [];
-    for (int i = 0; i < JuActors.juActors.length; i++) {
-      if (i != JuActors.juActors.length - 1) {
-        if (JuActors.juActors[i].ju_actor_name ==
-            JuActors.juActors[i + 1].ju_actor_name) {
+    for (int i = 0; i < JoActors.joActors.length; i++) {
+      if (i != JoActors.joActors.length - 1) {
+        if (JoActors.joActors[i].jo_actor_name ==
+            JoActors.joActors[i + 1].jo_actor_name) {
           temp.add(i);
         } else {
           temp.add(i);
-          dirname.add(JuActors.juActors[i].ju_actor_name);
+          dirname.add(JoActors.joActors[i].jo_actor_name);
           imgindex.add(temp);
           temp = [];
         }
       } else {
-        temp.add(JuActors.juActors.length - 1);
+        temp.add(JoActors.joActors.length - 1);
         imgindex.add(temp);
         temp = [];
         dirname
-            .add(JuActors.juActors[JuActors.juActors.length - 1].ju_actor_name);
+            .add(JoActors.joActors[JoActors.joActors.length - 1].jo_actor_name);
       }
     }
   }
@@ -69,7 +69,7 @@ class _JuActorState extends State<JuActor> {
             SizedBox(
               width: 300,
               height: 500,
-              child: JuActors.juActors.isEmpty
+              child: JoActors.joActors.isEmpty
                   ? const Text('데이터가 없습니다.')
                   : tec1.text.isNotEmpty
                       ? ListView.builder(
@@ -79,15 +79,6 @@ class _JuActorState extends State<JuActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JuActors
-                                      .juActors[imgindex[searchindex[index]][0]]
-                                      .ju_actor_name;
-                                  Message.temp_actor_score = double.parse(
-                                      JuActors
-                                          .juActors[imgindex[searchindex[index]]
-                                              [0]]
-                                          .juActor_score);
-
                                   Navigator.pop(context);
                                 },
                                 child: SingleChildScrollView(
@@ -129,14 +120,6 @@ class _JuActorState extends State<JuActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JuActors
-                                      .juActors[imgindex[index][0]]
-                                      .ju_actor_name;
-                                  Message.subactor_score = double.parse(JuActors
-                                      .juActors[imgindex[index][0]]
-                                      .juActor_score);
-                                  setJuActorData(index);
-
                                   Navigator.pop(context);
                                 },
                                 child: SingleChildScrollView(
@@ -182,9 +165,9 @@ class _JuActorState extends State<JuActor> {
 
   searchdir() {
     setState(() {
-      for (int i = 0; i < JuActors.juActors.length; i++) {
-        if (JuActors.juActors[i].ju_actor_name.length >= tec1.text.length) {
-          if (JuActors.juActors[i].ju_actor_name
+      for (int i = 0; i < JoActors.joActors.length; i++) {
+        if (JoActors.joActors[i].jo_actor_name.length >= tec1.text.length) {
+          if (JoActors.joActors[i].jo_actor_name
                   .substring(0, tec1.text.length) ==
               tec1.text) {
             searchindex.add(i);
@@ -194,17 +177,11 @@ class _JuActorState extends State<JuActor> {
     });
   }
 
-  setJuActorData(int index) {
-    for (int i = 0; i < imgindex[index].length; i++) {
-      JuActors.juActors.removeAt((imgindex[index][0]));
-    }
-  }
-
   Widget poster(int index) {
     List<Widget> resultList = [];
     for (int i = 0; i < imgindex[index].length; i++) {
       resultList.add(Image.asset(
-        JuActors.juActors[imgindex[index][i]].ju_movie_imgPath,
+        JoActors.joActors[imgindex[index][i]].jo_movie_imgPath,
         height: 100,
         width: 100,
         fit: BoxFit.contain,
