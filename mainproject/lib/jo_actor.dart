@@ -29,23 +29,29 @@ class _Actor2State extends State<Actor2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('조연'),
       ),
       body: SingleChildScrollView(
         reverse:  true,
         child: 
         Column(
-          children: [
-            SizedBox(
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    searchindex = [];
-                    searchjo();
-                  });
-                },
-                controller: tec1,
-              ),
+          children: [            
+            Row(
+              
+              children: [
+                SizedBox(
+                  child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        searchindex = [];
+                        searchjo();
+                      });
+                    },
+                    controller: tec1,
+                  ),
+                ),
+              ],
             )
             ,
             SizedBox(

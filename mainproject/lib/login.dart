@@ -35,16 +35,17 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.limeAccent,
+        backgroundColor: Color.fromARGB(255, 28, 26, 26),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         primary: true,
         elevation: 0,
       ),
       body: Center(
         child: Column(
-          children: [       
+          children: [      
+            Image.asset("images/movieposter/film.png"), 
                 SizedBox(
                   height: 100,
                 ),
@@ -61,8 +62,9 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               child: TextField(
+                 style: TextStyle(color: Colors.white),
                 controller: idcontroller,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -78,11 +80,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               child: TextField(
+                 style: TextStyle(color: Colors.white),
                 controller: pwcontroller,
                  obscureText: true,
                 decoration: const InputDecoration(
@@ -100,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             ElevatedButton(
               onPressed: () {
@@ -108,10 +111,18 @@ class _LoginPageState extends State<LoginPage> {
                       insertAction();
                     }
               },
+              style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
               child: Text('로그인'),
+              
             ),
+             SizedBox(
+              height: 30,
+            ),
+            Image.asset("images/movieposter/film_b.png"), 
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               TextButton(
@@ -124,8 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                   ),
                 ),
-              )
-            ])
+              ),
+            ]),
           ],
         ),
       ),

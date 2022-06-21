@@ -32,6 +32,7 @@ class _ActorState extends State<Actor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('주연'),
       ),
       body: SingleChildScrollView(

@@ -25,7 +25,9 @@ class DeveloperChart extends StatelessWidget {
           colorFn: (DeveloperSeries series, _) => series.barColor)
     ];
     // return charts.BarChart(series, animate: true); // Version 1
-    return SizedBox(
+    return 
+    Container(
+      
       height: 500,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -41,20 +43,22 @@ class DeveloperChart extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: charts.BarChart(
-                    series,
-                    domainAxis: const charts.OrdinalAxisSpec(
-                      renderSpec: charts.SmallTickRendererSpec(
-                        labelStyle: charts.TextStyleSpec(
-                          fontSize: 10,
-                          
+                  child: Container(
+                    child: charts.BarChart(
+                      series,
+                      domainAxis: const charts.OrdinalAxisSpec(
+                        renderSpec: charts.SmallTickRendererSpec(
+                          labelStyle: charts.TextStyleSpec(
+                            fontSize: 10,
+                            
+                          )
                         )
-                      )
+                      ),
+                      animationDuration: const Duration(seconds: 1),
+                      animate: true,
+                      vertical: false,
+                      
                     ),
-                    animationDuration: const Duration(seconds: 1),
-                    animate: true,
-                    vertical: false,
-                    
                   ),
                 )
               ],

@@ -46,6 +46,7 @@ class _DirectorState extends State<Director> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('감독'),
       ),
       body: SingleChildScrollView(

@@ -9,23 +9,23 @@ class MenuPage extends StatelessWidget {
   final List<Map<String, dynamic>> data = [
     {
       'title': '감독',
-      'backgroundColor': Colors.grey,
+      'backgroundColor': Color.fromARGB(255, 119, 192, 168),
     },
     {
       'title': '주연 배우',
-      'backgroundColor': Colors.grey,
+      'backgroundColor': Color.fromARGB(255, 119, 192, 168),
     },
      {
       'title': '조연 배우',
-      'backgroundColor': Colors.grey,
+      'backgroundColor': Color.fromARGB(255, 119, 192, 168),
     },
     {
       'title': '예측',
-      'backgroundColor': Colors.grey,
+      'backgroundColor': Color.fromARGB(255, 119, 192, 168),
     },
     {
       'title': '차트',
-      'backgroundColor': Colors.grey,
+      'backgroundColor': Color.fromARGB(255, 119, 192, 168),
     },
   ];
 
@@ -54,6 +54,7 @@ class MenuPage extends StatelessWidget {
             str,
             style: TextStyle(
               fontSize: 30,
+              color: Colors.black
             ),
           ),
         ),
@@ -70,9 +71,9 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         primary: true,
         elevation: 0,
