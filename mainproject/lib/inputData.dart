@@ -125,7 +125,7 @@ class _FirstState extends State<First> {
               height: 20,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () {
@@ -140,11 +140,15 @@ class _FirstState extends State<First> {
                   child: const Text('감독선택'),
                 ),
                 SizedBox(
-                  width: 200,
+                  width:5,
+                ),
+                SizedBox(
+                  width: 250,
                   child: TextField(
                     enabled: false,
                     controller: dcontroller,
                     decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(50, 0, 0, 0),
                       labelText: "버튼을 눌러 선택",
                     ),
                   ),
@@ -1062,7 +1066,6 @@ class _FirstState extends State<First> {
                 child: const Text('선택완료'),
               ),
             ),
-            Text(pred_result.toString())
           ]),
         ),
       ),
@@ -1312,13 +1315,13 @@ class _FirstState extends State<First> {
       ju = ju_score[ju_score.length - 1];
     }
     if (jo_score.length >= 3) {
-      jo = (double.parse(jo_score[jo_score.length - 1]) +
-              double.parse(jo_score[jo_score.length - 2]) +
-              double.parse(jo_score[jo_score.length - 3])) /
+      jo = ((jo_score[jo_score.length - 1]) +
+              (jo_score[jo_score.length - 2]) +
+              (jo_score[jo_score.length - 3])) /
           3;
     } else if (jo_score.length >= 2) {
-      jo = (double.parse(jo_score[jo_score.length - 1]) +
-              double.parse(jo_score[jo_score.length - 2])) /
+      jo = ((jo_score[jo_score.length - 1]) +
+              (jo_score[jo_score.length - 2])) /
           2;
     } else if (jo_score.isNotEmpty) {
       jo = jo_score[jo_score.length - 1];

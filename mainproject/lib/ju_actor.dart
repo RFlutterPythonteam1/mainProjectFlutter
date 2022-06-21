@@ -96,7 +96,7 @@ class _JuActorState extends State<JuActor> {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: SizedBox(
-                                    width: 800,
+                                    width: 1300,
                                     child: Card(
                                       child: Column(
                                         children: [
@@ -145,7 +145,7 @@ class _JuActorState extends State<JuActor> {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: SizedBox(
-                                    width: 800,
+                                    width: 1300,
                                     child: Card(
                                       child: Column(
                                         children: [
