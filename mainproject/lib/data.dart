@@ -9,6 +9,7 @@ class Genre {
 }
 
 class Message {
+  static String director ="";
   static String msg = "";
   static double director_score = 0;
   static int director_id = 0;
