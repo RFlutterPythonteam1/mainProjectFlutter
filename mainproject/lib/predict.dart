@@ -8,42 +8,47 @@ class Predict extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 119, 192, 168),
-        title: Text("예측 결과"),
-
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('${Result_msg.pre0}',
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('${Result_msg.pre}',
-               style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+    
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 119, 192, 168),
+          title: Text("예측 결과"),
+    
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${Result_msg.pre0}',
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('${Result_msg.pre}',
+                 style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('${Result_msg.img}',
-              height: 150),
-            ),
-        ]),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('${Result_msg.img}',
+                height: 150),
+              ),
+          ]),
+        ),
+    
       ),
-
     );
   }
 }

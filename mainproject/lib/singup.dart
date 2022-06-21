@@ -94,6 +94,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         )),
                     keyboardType: TextInputType.text,
+                    obscureText: true,
                   ),
                 ),
                 const SizedBox(
@@ -110,6 +111,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         )),
                     keyboardType: TextInputType.text,
+                    obscureText: true,
                   ),
                 ),
                 const SizedBox(
@@ -141,7 +143,7 @@ class _SignUpState extends State<SignUp> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
                         )),
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 const SizedBox(

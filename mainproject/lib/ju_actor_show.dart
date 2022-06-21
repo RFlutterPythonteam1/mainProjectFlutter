@@ -47,118 +47,123 @@ class _JuActorShowState extends State<JuActorShow> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 119, 192, 168),
-        title: const Text('주연배우'),
-      ),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Column(
-          children: [
-            SizedBox(
-              child: TextField(
-                decoration:
-                    const InputDecoration(prefixIcon: Icon(Icons.search)),
-                onChanged: (value) {
-                  setState(() {
-                    searchindex = [];
-                    searchdir();
-                  });
-                },
-                controller: tec1,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 119, 192, 168),
+          title: const Text('주연배우'),
+        ),
+        body: SingleChildScrollView(
+          reverse: true,
+          child: Column(
+            children: [
+              SizedBox(
+                child: TextField(
+                  decoration:
+                      const InputDecoration(prefixIcon: Icon(Icons.search)),
+                  onChanged: (value) {
+                    setState(() {
+                      searchindex = [];
+                      searchdir();
+                    });
+                  },
+                  controller: tec1,
+                ),
               ),
-            ),
-            SizedBox(
-              width: 300,
-              height: 500,
-              child: JuActors.juActors.isEmpty
-                  ? const Text('데이터가 없습니다.')
-                  : tec1.text.isNotEmpty
-                      ? ListView.builder(
-                          itemCount: searchindex.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: SizedBox(
-                                    width: 800,
-                                    child: Card(
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      30.0),
-                                                  child: SizedBox(
-                                                    width: 50,
-                                                    child: Text(dirname[searchindex[index]]),
+              SizedBox(
+                width: 300,
+                height: 500,
+                child: JuActors.juActors.isEmpty
+                    ? const Text('데이터가 없습니다.')
+                    : tec1.text.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: searchindex.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: SizedBox(
+                                      width: 800,
+                                      child: Card(
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(
+                                                        30.0),
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      child: Text(dirname[searchindex[index]]),
+                                                    ),
                                                   ),
-                                                ),
-                                                poster(index),
-                                              ],
+                                                  poster(index),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        )
-                      : ListView.builder(
-                          itemCount: dirname.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: SizedBox(
-                                    width: 800,
-                                    child: Card(
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      30.0),
-                                                  child: SizedBox(
-                                                    width: 50,
-                                                    child: Text(dirname[index]),
+                              );
+                            },
+                          )
+                        : ListView.builder(
+                            itemCount: dirname.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: SizedBox(
+                                      width: 800,
+                                      child: Card(
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(
+                                                        30.0),
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      child: Text(dirname[index]),
+                                                    ),
                                                   ),
-                                                ),
-                                                poster(index),
-                                              ],
+                                                  poster(index),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-            ),
-          ],
+                              );
+                            },
+                          ),
+              ),
+            ],
+          ),
         ),
       ),
     );
