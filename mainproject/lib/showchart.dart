@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
-      headingRowColor: MaterialStateColor.resolveWith((states) => Colors.grey),
+      headingRowColor: MaterialStateColor.resolveWith((states) => Color.fromARGB(255, 224, 219, 244)),
     );
   }
 

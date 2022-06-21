@@ -117,6 +117,7 @@ class _FirstState extends State<First> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 119, 192, 168),
+        title:Text("예측 데이터 선택")
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -1200,70 +1201,70 @@ class _FirstState extends State<First> {
 
   getDataS(value) {
     setState(() {
-      scontroller.text = Message.msg;
+      scontroller.text = Message.subactor_temp;
       Message.subactor_score = Message.temp_actor_score;
     });
   }
 
   getDataS2(value) {
     setState(() {
-      s2controller.text = Message.msg;
+      s2controller.text = Message.subactor_temp;
       Message.subactor2_score = Message.temp_actor_score;
     });
   }
 
   getDataS3(value) {
     setState(() {
-      s3controller.text = Message.msg;
+      s3controller.text = Message.subactor_temp;;
       Message.subactor3_score = Message.temp_actor_score;
     });
   }
 
   getDataS4(value) {
     setState(() {
-      s4controller.text = Message.msg;
+      s4controller.text = Message.subactor_temp;
       Message.subactor4_score = Message.temp_actor_score;
     });
   }
 
   getDataS5(value) {
     setState(() {
-      s5controller.text = Message.msg;
+      s5controller.text = Message.subactor_temp;
       Message.subactor5_score = Message.temp_actor_score;
     });
   }
 
   getDataS6(value) {
     setState(() {
-      s6controller.text = Message.msg;
+      s6controller.text = Message.subactor_temp;
       Message.subactor6_score = Message.temp_actor_score;
     });
   }
 
   getDataS7(value) {
     setState(() {
-      s7controller.text = Message.msg;
+      s7controller.text = Message.subactor_temp;
       Message.subactor7_score = Message.temp_actor_score;
     });
   }
 
   getDataS8(value) {
     setState(() {
-      s8controller.text = Message.msg;
+      s8controller.text = Message.subactor_temp;
       Message.subactor8_score = Message.temp_actor_score;
     });
   }
 
   getDataS9(value) {
     setState(() {
-      s9controller.text = Message.msg;
+      s9controller.text = Message.subactor_temp;
       Message.subactor9_score = Message.temp_actor_score;
     });
   }
 
   getDataS10(value) {
     setState(() {
-      s10controller.text = Message.msg;
+      s10controller.text = Message.subactor_temp;
       Message.subactor10_score = Message.temp_actor_score;
     });
   }
@@ -1325,6 +1326,10 @@ class _FirstState extends State<First> {
     JuActors.juActors.clear();
     for (int i = 0; i < JuActors.JuActorsBackup.length; i++) {
       JuActors.juActors.add(JuActors.JuActorsBackup[i]);
+    }
+    JoActors.joActors.clear();
+    for (int j = 0; j < JoActors.joActorsBackup.length; j++) {
+      JoActors.joActors.add(JoActors.joActorsBackup[j]);
     }
   }
 

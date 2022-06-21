@@ -44,103 +44,106 @@ class _LoginPageState extends State<LoginPage> {
         primary: true,
         elevation: 0,
       ),
-      body: Center(
-        child: Column(
-          children: [      
-            Image.asset("images/movieposter/film.png"), 
-                SizedBox(
-                  height: 100,
-                ),
-                const Text(
-                  '로그인',
-                  style: TextStyle(
-                    fontSize: 40,
-                    letterSpacing: 5,
-                    color: Colors.white,
-                    fontStyle: FontStyle.normal,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [      
+              Image.asset("images/movieposter/film.png"), 
+                  SizedBox(
+                    height: 100,
                   ),
-                ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-                 style: TextStyle(color: Colors.white),
-                controller: idcontroller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                      hintText: '아이디를 입력해주세요.',
+                  const Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 40,
+                      letterSpacing: 5,
+                      color: Colors.white,
+                      fontStyle: FontStyle.normal,
                     ),
+                  ),
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                   style: TextStyle(color: Colors.white),
+                  controller: idcontroller,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                        hintText: '아이디를 입력해주세요.',
+                      ),
+                  
+                  keyboardType: TextInputType.text,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                   style: TextStyle(color: Colors.white),
+                  controller: pwcontroller,
+                   obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                        ),
+                        hintText: '비밀번호를 입력해주세요.',
+                      ),
                 
-                keyboardType: TextInputType.text,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-                 style: TextStyle(color: Colors.white),
-                controller: pwcontroller,
-                 obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Colors.white,
-                      ),
-                      hintText: '비밀번호를 입력해주세요.',
-                    ),
-              
-                keyboardType: TextInputType.text,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (inputDataCheck()) {
-                      insertAction();
-                    }
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                  keyboardType: TextInputType.text,
                 ),
-              child: Text('로그인'),
-              
-            ),
-             SizedBox(
-              height: 30,
-            ),
-            Image.asset("images/movieposter/film_b.png"), 
-            SizedBox(
-              height: 30,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              TextButton(
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/signup');
+                  if (inputDataCheck()) {
+                        insertAction();
+                      }
                 },
-                child: Text(
-                  '회원가입',
-                  style: TextStyle(
-                    color: Colors.white,
+                style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                  ),
+                child: Text('로그인',
+                style: TextStyle(color: Colors.black)),
+            
+              ),
+               SizedBox(
+                height: 30,
+              ),
+              Image.asset("images/movieposter/film_b.png"), 
+              SizedBox(
+                height: 30,
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/signup');
+                  },
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ]),
-          ],
+              ]),
+            ],
+          ),
         ),
       ),
       ),
@@ -211,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushNamed(context, '/menu');
                           //Navigator.pushNamed(context, '/T');
                         },
-                        child: const Text('확인'))
+                        child: const Text('확인',))
                   ],
                 );
               });

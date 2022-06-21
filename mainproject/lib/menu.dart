@@ -54,7 +54,8 @@ class MenuPage extends StatelessWidget {
             str,
             style: TextStyle(
               fontSize: 30,
-              color: Colors.black
+              color: Color.fromARGB(255, 255, 255, 255),
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -71,7 +72,7 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 216, 223, 219),
+      backgroundColor: Color.fromARGB(255, 215, 223, 219),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 216, 223, 219),
         automaticallyImplyLeading: false,
