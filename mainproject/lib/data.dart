@@ -45,6 +45,7 @@ class Message {
   static String actor10 = "";
   static double actor10_score = 0;
 
+  static String subactor_temp = "";
   static String subactor = "";
   static double subactor_score = 0;
 

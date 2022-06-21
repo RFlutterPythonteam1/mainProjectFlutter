@@ -39,131 +39,138 @@ class _SignUpState extends State<SignUp> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-         backgroundColor: Colors.blueGrey,
+         backgroundColor: Color.fromARGB(255, 215, 223, 219),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        title: Text("회 원 가 입"),
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
         automaticallyImplyLeading: false,
         primary: true,
         elevation: 0,
       ),
         body: SingleChildScrollView(
           child: Center(
-            child: Column(children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-              '회원가입',
-              style: TextStyle(
-                fontSize: 40,
-                letterSpacing: 5,
-                color: Colors.white,
-                fontStyle: FontStyle.normal,
-              ),
-            ),
-            const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: useridController,
-                  decoration: const InputDecoration(
-                      hintText: '아이디를 입력해주세요',
-                      labelText: 'User ID',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      )),
-                  keyboardType: TextInputType.text,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
+              //   const Text(
+              //   '회원가입',
+              //   style: TextStyle(
+              //     fontSize: 40,
+              //     letterSpacing: 5,
+              //     color: Colors.black,
+              //     fontStyle: FontStyle.normal,
+              //   ),
+              // ),
               const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: passwdController,
-                  decoration: const InputDecoration(
-                      hintText: '암호를 입력해주세요',
-                      labelText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      )),
-                  keyboardType: TextInputType.text,
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: repasswdController,
-                  decoration: const InputDecoration(
-                      hintText: '암호를 입력해주세요',
-                      labelText: 'Re-enter Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      )),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                      hintText: '이름을 입력해주세요',
-                      labelText: 'Name',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      )),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                      hintText: '이메일 주소를 입력해주세요',
-                      labelText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      )),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 40,
-                width: 170,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ))),
-                  onPressed: () {
-                    if (inputDataCheck()) {
-                      insertAction();
-                    }
-                  },
-                  child: const Text(
-                    "회원 가입",
-                    style: TextStyle(fontSize: 17),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: useridController,
+                    decoration: const InputDecoration(
+                        hintText: '아이디를 입력해주세요',
+                        labelText: 'User ID',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
+                    keyboardType: TextInputType.text,
                   ),
                 ),
-              )
-            ]),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: passwdController,
+                    decoration: const InputDecoration(
+                        hintText: '암호를 입력해주세요',
+                        labelText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: repasswdController,
+                    decoration: const InputDecoration(
+                        hintText: '암호를 입력해주세요',
+                        labelText: 'Re-enter Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                        hintText: '이름을 입력해주세요',
+                        labelText: 'Name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                        hintText: '이메일 주소를 입력해주세요',
+                        labelText: 'Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        )),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 170,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                            MaterialStateProperty.all<Color>(Color.fromARGB(255, 119, 192, 168),
+                            ),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ))),
+                    onPressed: () {
+                      if (inputDataCheck()) {
+                        insertAction();
+                      }
+                    },
+                    child: const Text(
+                      "확 인",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ),
+                )
+              ]),
+            ),
           ),
         ),
       ),

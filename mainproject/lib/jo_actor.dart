@@ -82,7 +82,7 @@ class _JoActorState extends State<JoActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JoActors
+                                  Message.subactor_temp= JoActors
                                       .joActors[imgindex[searchindex[index]][0]]
                                       .jo_actor_name;
                                   Message.temp_actor_score = double.parse(
@@ -132,7 +132,7 @@ class _JoActorState extends State<JoActor> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = JoActors
+                                  Message.subactor_temp = JoActors
                                       .joActors[imgindex[index][0]]
                                       .jo_actor_name;
                                   Message.temp_actor_score = double.parse(

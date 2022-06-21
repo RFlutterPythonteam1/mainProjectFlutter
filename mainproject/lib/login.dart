@@ -117,8 +117,9 @@ class _LoginPageState extends State<LoginPage> {
               style: ElevatedButton.styleFrom(
                   primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
-              child: Text('로그인'),
-              
+              child: Text('로그인',
+              style: TextStyle(color: Colors.black)),
+          
             ),
              SizedBox(
               height: 30,
@@ -211,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushNamed(context, '/menu');
                           //Navigator.pushNamed(context, '/T');
                         },
-                        child: const Text('확인'))
+                        child: const Text('확인',))
                   ],
                 );
               });
