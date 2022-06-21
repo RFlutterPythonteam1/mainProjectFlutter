@@ -11,6 +11,7 @@ class Predict extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
         title: Text("예측 결과"),
 
       ),

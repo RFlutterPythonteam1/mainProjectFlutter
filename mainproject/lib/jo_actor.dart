@@ -49,30 +49,26 @@ class _JoActorState extends State<JoActor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('조연'),
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
+        title: const Text('주연배우'),
       ),
       body: SingleChildScrollView(
-        reverse:  true,
-        child: 
-        Column(
-          children: [            
-            Row(
-              
-              children: [
-                SizedBox(
-                  child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        searchindex = [];
-                      });
-                    },
-                    controller: tec1,
-                  ),
-                ),
-              ],
-            )
-            ,
+        reverse: true,
+        child: Column(
+          children: [
+            SizedBox(
+              child: TextField(
+                decoration:
+                    const InputDecoration(prefixIcon: Icon(Icons.search)),
+                onChanged: (value) {
+                  setState(() {
+                    searchindex = [];
+                    searchdir();
+                  });
+                },
+                controller: tec1,
+              ),
+            ),
             SizedBox(
               width: 300,
               height: 500,
@@ -94,7 +90,7 @@ class _JoActorState extends State<JoActor> {
                                           .joActors[imgindex[searchindex[index]]
                                               [0]]
                                           .joActor_score);
-
+                                  setJoActorData(index);
                                   Navigator.pop(context);
                                 },
                                 child: SingleChildScrollView(
@@ -113,7 +109,7 @@ class _JoActorState extends State<JoActor> {
                                                       30.0),
                                                   child: SizedBox(
                                                     width: 50,
-                                                    child: Text(dirname[index]),
+                                                    child: Text(dirname[searchindex[index]]),
                                                   ),
                                                 ),
                                                 poster(index),
@@ -188,16 +184,16 @@ class _JoActorState extends State<JoActor> {
   //functions
 
   searchdir() {
-    setState(() {
-      for (int i = 0; i < JoActors.joActors.length; i++) {
-        if (JoActors.joActors[i].jo_actor_name.length >= tec1.text.length) {
-          if (JoActors.joActors[i].jo_actor_name
-                  .substring(0, tec1.text.length) ==
-              tec1.text) {
-            searchindex.add(i);
-          }
+      setState(() {
+      searchindex = [];
+      
+    for (int i = 0 ; i < dirname.length ; i++){
+      if(dirname[i].length >= tec1.text.length){
+        if(dirname[i].substring(0, tec1.text.length) == tec1.text ){
+          searchindex.add(i);
         }
       }
+    }
     });
   }
 
@@ -220,4 +216,5 @@ class _JoActorState extends State<JoActor> {
     return Row(children: resultList);
   }
 }// End
+
 

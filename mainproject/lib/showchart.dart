@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
         title: const Text('Bar Chart'),
       ),
       body: Center(
@@ -52,7 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   )
                 : ischart
-                    ? DeveloperChart(data: data)
+                    ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DeveloperChart(data: data),
+                    )
                     : Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVChart("csv/distributor_forgraph.csv", 1);
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("배급사-횟수"),
                 ),
@@ -92,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVChart("csv/distributor_forgraph.csv", 2);
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("배급사-누적관객수"),
                 ),
@@ -104,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVChart("csv/distributor_forgraph.csv", 3);
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("배급사-평균관객수"),
                 ),
@@ -121,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVChart("csv/genre_forgraph.csv", 1);
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("장르-누적관객수"),
                 ),
@@ -133,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVChart("csv/genre_forgraph.csv", 2);
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("장르-횟수"),
                 ),
@@ -156,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVDF("csv/distributor_forgraph.csv");
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("배급사"),
                 ),
@@ -168,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _loadCSVDF("csv/genre_forgraph.csv");
                   },
                   style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 152, 10, 41), // Background color
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
                 ),
                   child: const Text("장르"),
                 ),
@@ -193,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
         data.add(DeveloperSeries(
           distributor: csvData[i][0],
           cnt: csvData[i][colNum],
-          barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 227, 156, 148),),
+          barColor: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 148, 176, 227),),
         ));
       }
     });

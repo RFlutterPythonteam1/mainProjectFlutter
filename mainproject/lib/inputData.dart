@@ -115,7 +115,9 @@ class _FirstState extends State<First> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(children: [
@@ -132,6 +134,9 @@ class _FirstState extends State<First> {
                     Navigator.pushNamed(context, "/director")
                         .then((value) => getDataD(value));
                   },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                   child: const Text('감독선택'),
                 ),
                 SizedBox(
@@ -161,6 +166,9 @@ class _FirstState extends State<First> {
                     Navigator.pushNamed(context, "/JuActor")
                         .then((value) => getDataM(value));
                   },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                   child: const Text('주연선택'),
                 ),
                 const SizedBox(
@@ -200,6 +208,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM2(value));
                     },
+                      style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -555,6 +566,9 @@ class _FirstState extends State<First> {
                     Navigator.pushNamed(context, "/JoActor")
                         .then((value) => getDataS(value));
                   },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                   child: const Text('조연선택'),
                 ),
                 const SizedBox(
@@ -914,6 +928,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS10(value));
                     },
+                      style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -1039,6 +1056,9 @@ class _FirstState extends State<First> {
                     _showDialog(context);
                   }
                 },
+                  style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                 child: const Text('선택완료'),
               ),
             ),

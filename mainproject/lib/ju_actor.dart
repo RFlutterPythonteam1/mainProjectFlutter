@@ -9,7 +9,6 @@ class JuActor extends StatefulWidget {
 }
 
 class _JuActorState extends State<JuActor> {
-  late String director;
   late List dirname;
   late List imgindex;
   late List temp;
@@ -49,6 +48,7 @@ class _JuActorState extends State<JuActor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
         title: const Text('주연배우'),
       ),
       body: SingleChildScrollView(
@@ -57,6 +57,8 @@ class _JuActorState extends State<JuActor> {
           children: [
             SizedBox(
               child: TextField(
+                decoration:
+                    const InputDecoration(prefixIcon: Icon(Icons.search)),
                 onChanged: (value) {
                   setState(() {
                     searchindex = [];
@@ -87,6 +89,7 @@ class _JuActorState extends State<JuActor> {
                                           .juActors[imgindex[searchindex[index]]
                                               [0]]
                                           .juActor_score);
+                                  setJuActorData(index);
 
                                   Navigator.pop(context);
                                 },
@@ -106,7 +109,7 @@ class _JuActorState extends State<JuActor> {
                                                       30.0),
                                                   child: SizedBox(
                                                     width: 50,
-                                                    child: Text(dirname[index]),
+                                                    child: Text(dirname[searchindex[index]]),
                                                   ),
                                                 ),
                                                 poster(index),
@@ -182,11 +185,11 @@ class _JuActorState extends State<JuActor> {
 
   searchdir() {
     setState(() {
-      for (int i = 0; i < JuActors.juActors.length; i++) {
-        if (JuActors.juActors[i].ju_actor_name.length >= tec1.text.length) {
-          if (JuActors.juActors[i].ju_actor_name
-                  .substring(0, tec1.text.length) ==
-              tec1.text) {
+      searchindex = [];
+
+      for (int i = 0; i < dirname.length; i++) {
+        if (dirname[i].length >= tec1.text.length) {
+          if (dirname[i].substring(0, tec1.text.length) == tec1.text) {
             searchindex.add(i);
           }
         }
@@ -199,8 +202,7 @@ class _JuActorState extends State<JuActor> {
       JuActors.juActors.removeAt((imgindex[index][0]));
     }
   }
-
-  Widget poster(int index) {
+Widget poster(int index) {
     List<Widget> resultList = [];
     for (int i = 0; i < imgindex[index].length; i++) {
       resultList.add(Image.asset(
@@ -210,7 +212,9 @@ class _JuActorState extends State<JuActor> {
         fit: BoxFit.contain,
       ));
     }
+    
     return Row(children: resultList);
   }
+  
 }// End
 

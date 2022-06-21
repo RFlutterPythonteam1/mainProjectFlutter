@@ -49,6 +49,7 @@ class _JoActorShowState extends State<JoActorShow> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 119, 192, 168),
         title: const Text('주연배우'),
       ),
       body: SingleChildScrollView(
@@ -57,6 +58,8 @@ class _JoActorShowState extends State<JoActorShow> {
           children: [
             SizedBox(
               child: TextField(
+                decoration:
+                    const InputDecoration(prefixIcon: Icon(Icons.search)),
                 onChanged: (value) {
                   setState(() {
                     searchindex = [];
@@ -97,7 +100,7 @@ class _JoActorShowState extends State<JoActorShow> {
                                                       30.0),
                                                   child: SizedBox(
                                                     width: 50,
-                                                    child: Text(dirname[index]),
+                                                    child: Text(dirname[searchindex[index]]),
                                                   ),
                                                 ),
                                                 poster(index),
@@ -162,18 +165,17 @@ class _JoActorShowState extends State<JoActorShow> {
   }
 
   //functions
-
-  searchdir() {
-    setState(() {
-      for (int i = 0; i < JoActors.joActors.length; i++) {
-        if (JoActors.joActors[i].jo_actor_name.length >= tec1.text.length) {
-          if (JoActors.joActors[i].jo_actor_name
-                  .substring(0, tec1.text.length) ==
-              tec1.text) {
-            searchindex.add(i);
-          }
+searchdir() {
+      setState(() {
+      searchindex = [];
+      
+    for (int i = 0 ; i < dirname.length ; i++){
+      if(dirname[i].length >= tec1.text.length){
+        if(dirname[i].substring(0, tec1.text.length) == tec1.text ){
+          searchindex.add(i);
         }
       }
+    }
     });
   }
 
