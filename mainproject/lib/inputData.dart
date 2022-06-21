@@ -1325,6 +1325,10 @@ class _FirstState extends State<First> {
     for (int i = 0; i < JuActors.JuActorsBackup.length; i++) {
       JuActors.juActors.add(JuActors.JuActorsBackup[i]);
     }
+    JoActors.joActors.clear();
+    for (int j = 0; j < JoActors.joActorsBackup.length; j++) {
+      JoActors.joActors.add(JoActors.joActorsBackup[j]);
+    }
   }
 
   // functions
