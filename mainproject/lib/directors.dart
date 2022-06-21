@@ -95,7 +95,7 @@ class _DirectorState extends State<Director> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = Directors
+                                  Message.director = Directors
                                       .directors[imgindex[searchindex[index]]
                                           [0]]
                                       .director_name;
@@ -149,7 +149,7 @@ class _DirectorState extends State<Director> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  Message.msg = Directors
+                                  Message.director = Directors
                                       .directors[imgindex[index][0]]
                                       .director_name;
                                   Message.director_score = Directors

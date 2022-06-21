@@ -250,6 +250,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM3(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -289,6 +292,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM4(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -328,6 +334,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM5(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -367,6 +376,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM6(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -406,6 +418,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM7(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -445,6 +460,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM8(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -484,6 +502,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM9(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -523,6 +544,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JuActor")
                           .then((value) => getDataM10(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('주연선택'),
                   ),
                   const SizedBox(
@@ -608,6 +632,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS2(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -648,6 +675,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS3(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -688,6 +718,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS4(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -728,6 +761,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS5(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -768,6 +804,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS6(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   SizedBox(
@@ -808,6 +847,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS7(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -848,6 +890,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS8(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -888,6 +933,9 @@ class _FirstState extends State<First> {
                       Navigator.pushNamed(context, "/JoActor")
                           .then((value) => getDataS9(value));
                     },
+                    style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 119, 192, 168), // Background color
+                ),
                     child: const Text('조연선택'),
                   ),
                   const SizedBox(
@@ -1044,6 +1092,7 @@ class _FirstState extends State<First> {
               padding: const EdgeInsets.all(30.0),
               child: ElevatedButton(
                 onPressed: () {
+                  setJuActorRestore();
                   if (dcontroller.text.isEmpty) {
                     alertDialog(context, "감독을 선택해주세요.");
                   } else if (mcontroller.text.isEmpty) {
@@ -1072,7 +1121,7 @@ class _FirstState extends State<First> {
   getDataD(value) {
     setState(() {
       setInputInit();
-      dcontroller.text = Message.msg;
+      dcontroller.text = Message.director;
       Message.director_score = Message.temp_actor_score;
     });
   }
